@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import Banner from "./component/Banner/Page";
 import Star from "./component/Star/Page";
+import Review from "./component/Review/Page";
 
 
 
@@ -12,6 +13,7 @@ export default function Home() {
       <Banner />
       <Star />
       <Link href='/review' className="text-2xl text-blue-500 mt-4">View More</Link>
+      <Review />
 
     </div>
   );
