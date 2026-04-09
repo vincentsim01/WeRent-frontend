@@ -16,11 +16,12 @@ export default function Home() {
       <div>
         Designer
       </div>
-      <div className='flex flex-col items-start gap-2'>
-        Product Details
-        <div>Fabric</div>
-        <div>Fit</div>
-        <div>Size Guide</div>
+             Product Details
+      <div className=' gap-2 border w-[70%]'>
+ 
+        <div className='flex justify-around'><div>Fabric</div><div>Silk</div></div>
+        <div className='flex justify-around'><span>Fit</span><span>Regular</span></div>
+        <div className='flex justify-around'><span>Size</span><span>Medium</span></div>
       </div>
       <Link href='/review' className="text-2xl text-blue-500 mt-4">View More</Link>
       <Review />
