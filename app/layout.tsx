@@ -11,8 +11,11 @@ const cormorant = Cormorant({
 
 
 export const metadata: Metadata = {
-  title: "n atelier — Black Kaftan with Embellishment",
+  title: "WeRent — Black Kaftan with Embellishment",
   description: "Luxury fashion rental — Black Kaftan with Embellishment by n atelier",
+  icons: {
+    icon: "/favicon.png",
+  },
 };
 
 export default function RootLayout({
