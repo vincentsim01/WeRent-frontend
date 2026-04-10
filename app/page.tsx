@@ -15,7 +15,7 @@ export default function ProductPage() {
       className="min-h-screen"
       style={{ background: "var(--parchment)", fontFamily: "var(--font-cormorant)" }}
     >
-      <div className="mx-auto pb-32" style={{ maxWidth: 480 }}>
+      <div className="mx-auto pb-32 w-[90%] md:w-[90%]">
 
         {/* Header */}
         <Header />

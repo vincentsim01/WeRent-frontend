@@ -14,7 +14,7 @@ export default function ProductImageGallery({
   const [active, setActive] = useState(0);
 
   return (
-    <div className="relative w-full bg-[#1a1714]" style={{ aspectRatio: "3/4" }}>
+    <div className="relative w-full bg-[#1a1714]" style={{ aspectRatio: "3/3" }}>
       {/* Placeholder dress illustration */}
       <div className="absolute inset-0 flex items-center justify-center">
         <svg
