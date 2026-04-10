@@ -42,7 +42,7 @@ export default function Header() {
           className="text-sm tracking-[0.18em] uppercase"
           style={{ fontFamily: "var(--font-cormorant)", fontWeight: 400, color: "var(--ink)" }}
         >
-          n atelier
+          <img src='/logo.png' alt='WeRent Logo' style={{ height: 30 }} />
         </span>
 
         {/* Actions */}
