@@ -66,13 +66,25 @@ export default function ProductImageGallery({
           <line x1="113" y1="330" x2="113" y2="342" stroke="#1a1714" strokeWidth="2" />
           <line x1="127" y1="330" x2="127" y2="342" stroke="#1a1714" strokeWidth="2" />
         </svg> */}
-        {images.map((src,i) =>{
-          return(
 
-            <img src={src} alt={`Product image of ${productName}`} className="w-auto max-h-[80%] object-contain" />
-          )
 
-        })}
+        <img src={images[active]} alt={`Product image of ${productName}`} className="w-auto max-h-[80%] object-contain" />
+
+              {/* Prev */}
+              <button
+                onClick={() => setActive((active - 1 + images.length) % images.length)}
+                className="absolute left-2 top-1/2 -translate-y-1/2 bg-black/50 text-white px-3 py-1 text-4xl"
+              >
+                ‹
+              </button>
+
+              {/* Next */}
+              <button
+                onClick={() => setActive((active + 1) % images.length)}
+                className="absolute right-2 top-1/2 -translate-y-1/2 bg-black/50 text-white px-3 py-1 text-4xl"
+              >
+                ›
+              </button>
        
       </div>
 
