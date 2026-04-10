@@ -1,26 +1,76 @@
-@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Mono:wght@300;400&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --font-cormorant: 'Cormorant Garamond', serif;
+  --font-dm-mono: 'DM Mono', monospace;
+  --gold: #C9A84C;
+  --gold-light: #DFC070;
+  --gold-dark: #b8963f;
+  --ink: #1a1714;
+  --parchment: #f8f5f0;
+  --warm-gray: #8a8279;
+  --border: #e8e2d9;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+* {
+  box-sizing: border-box;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--parchment);
+  color: var(--ink);
+  font-family: var(--font-cormorant), serif;
+  -webkit-font-smoothing: antialiased;
 }
+
+@layer utilities {
+  .text-ink { color: var(--ink); }
+  .text-warm-gray { color: var(--warm-gray); }
+  .text-gold { color: var(--gold); }
+  .bg-parchment { background-color: var(--parchment); }
+  .bg-gold { background-color: var(--gold); }
+  .border-soft { border-color: var(--border); }
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.animate-fade-up {
+  animation: fadeUp 0.6s ease forwards;
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.5s ease forwards;
+}
+
+.delay-100 { animation-delay: 0.1s; }
+.delay-200 { animation-delay: 0.2s; }
+.delay-300 { animation-delay: 0.3s; }
+.delay-400 { animation-delay: 0.4s; }
+.delay-500 { animation-delay: 0.5s; }
+
+/* Star rating */
+.star-filled path  { fill: var(--gold); }
+.star-empty path   { fill: none; stroke: var(--gold); stroke-width: 1.2px; }
+.star-half .left   { fill: var(--gold); }
+.star-half .right  { fill: none; stroke: var(--gold); stroke-width: 1.2px; }
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--parchment); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
