@@ -15,15 +15,15 @@ function Stars({ rating, size = 14 }: { rating: number; size?: number }) {
             {half && (
               <defs>
                 <linearGradient id={`h${i}`}>
-                  <stop offset="50%" stopColor="#C9A84C" />
+                  <stop offset="50%" stopColor="var(--gold)" />
                   <stop offset="50%" stopColor="transparent" />
                 </linearGradient>
               </defs>
             )}
             <path
               d="M7 1.5l1.55 3.14 3.46.5-2.5 2.44.59 3.44L7 9.27l-3.1 1.75.59-3.44L2 5.14l3.46-.5z"
-              fill={filled ? "#C9A84C" : half ? `url(#h${i})` : "none"}
-              stroke="#C9A84C"
+              fill={filled ? "var(--gold)" : half ? `url(#h${i})` : "none"}
+              stroke="var(--gold)"
               strokeWidth={filled || half ? 0 : 1}
             />
           </svg>
@@ -37,10 +37,10 @@ function Stars({ rating, size = 14 }: { rating: number; size?: number }) {
 function PhotoThumb({ color }: { color: string }) {
   return (
     <div
-      className="rounded overflow-hidden flex items-center justify-center flex-shrink-0"
+      className="rounded overflow-hidden flex items-center justify-center flex-shrink-0 transition-transform duration-500 hover:scale-110 hover:shadow-lg cursor-pointer"
       style={{ width: 64, height: 80, background: color }}
     >
-      <svg viewBox="0 0 40 60" width="32" height="48">
+      <svg viewBox="0 0 40 60" width="32" height="48" className="transition-opacity duration-300 opacity-80 hover:opacity-100">
         <ellipse cx="20" cy="12" rx="7" ry="8" fill="rgba(255,255,255,0.2)" />
         <path d="M8,22 Q13,18 18,20 L19,52 Q20,54 21,52 L22,20 Q27,18 32,22 L34,42 Q32,54 20,55 Q8,54 6,42 Z" fill="rgba(255,255,255,0.15)" />
       </svg>
@@ -49,7 +49,7 @@ function PhotoThumb({ color }: { color: string }) {
 }
 
 /* ─── Single review card ────────────────────────────────── */
-function ReviewCard({ review }: { review: ReviewFull }) {
+function ReviewCard({ review, index = 0 }: { review: ReviewFull; index?: number }) {
   const [expanded, setExpanded] = useState(false);
   const [upvoted, setUpvoted] = useState(false);
   const [upvoteCount, setUpvoteCount] = useState(review.upvotes);
@@ -67,17 +67,18 @@ function ReviewCard({ review }: { review: ReviewFull }) {
 
   return (
     <article
-      className="group"
+      className={`glass-card group hover-lift animate-fade-up rounded-2xl mb-4 ${
+        ["", "delay-100", "delay-200", "delay-300", "delay-400", "delay-500"][index % 6]
+      }`}
       style={{
-        borderBottom: "0.5px solid var(--border)",
-        padding: "24px 0",
+        padding: "24px",
       }}
     >
       {/* Top row: avatar + name + upvote */}
       <div className="flex items-start justify-between gap-3 mb-3">
         <div className="flex items-center gap-3">
           <div
-            className="rounded-full flex items-center justify-center text-xs font-mono flex-shrink-0"
+            className="rounded-full flex items-center justify-center text-xs font-mono flex-shrink-0 transition-all duration-300 group-hover:scale-110 group-hover:shadow-[0_0_12px_var(--gold-border)]"
             style={{
               width: 40, height: 40,
               background: review.avatarBg,
@@ -93,8 +94,15 @@ function ReviewCard({ review }: { review: ReviewFull }) {
                 {review.name}
               </span>
               {review.verified && (
-                <span className="text-xs font-mono px-1.5 py-0.5 rounded"
-                  style={{ background: "rgba(201,168,76,0.12)", color: "#9a7830", fontSize: 9, letterSpacing: "0.06em", textTransform: "uppercase" }}>
+                <span className="text-xs font-mono px-2 py-0.5 rounded-sm"
+                  style={{ 
+                    background: "var(--gold)", 
+                    color: "white", 
+                    fontSize: 9, 
+                    fontWeight: 600,
+                    letterSpacing: "0.08em", 
+                    textTransform: "uppercase" 
+                  }}>
                   verified
                 </span>
               )}
@@ -106,20 +114,20 @@ function ReviewCard({ review }: { review: ReviewFull }) {
         {/* Upvote */}
         <button
           onClick={handleUpvote}
-          className="flex items-center gap-1.5 rounded-full px-3 py-1.5 transition-all duration-200 flex-shrink-0"
+          className="flex items-center gap-1.5 rounded-full px-3 py-1.5 transition-all duration-300 flex-shrink-0 hover:scale-105 active:scale-95"
           style={{
-            border: upvoted ? "0.5px solid #C9A84C" : "0.5px solid var(--border)",
-            background: upvoted ? "rgba(201,168,76,0.08)" : "transparent",
-            color: upvoted ? "#C9A84C" : "var(--warm-gray)",
+            border: upvoted ? "0.5px solid var(--gold)" : "0.5px solid var(--border)",
+            background: upvoted ? "var(--gold-subtle)" : "transparent",
+            color: upvoted ? "var(--gold)" : "var(--warm-gray)",
           }}
           aria-label="Helpful"
         >
           <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
             <path d="M4 13V6.5L7 1.5l.5.5C7.8 3 8 4 7.5 5.5H12a1 1 0 0 1 1 1.1l-1 5a1 1 0 0 1-1 .9H4z"
-              fill={upvoted ? "#C9A84C" : "none"}
-              stroke={upvoted ? "#C9A84C" : "currentColor"}
+              fill={upvoted ? "var(--gold)" : "none"}
+              stroke={upvoted ? "var(--gold)" : "currentColor"}
               strokeWidth="1.1" strokeLinejoin="round" />
-            <path d="M4 6.5H2a1 1 0 0 0-1 1V12a1 1 0 0 0 1 1h2" stroke={upvoted ? "#C9A84C" : "currentColor"} strokeWidth="1.1" />
+            <path d="M4 6.5H2a1 1 0 0 0-1 1V12a1 1 0 0 0 1 1h2" stroke={upvoted ? "var(--gold)" : "currentColor"} strokeWidth="1.1" />
           </svg>
           <span className="text-xs font-mono">({upvoteCount})</span>
         </button>
@@ -149,8 +157,8 @@ function ReviewCard({ review }: { review: ReviewFull }) {
             {"... "}
             <button
               onClick={() => setExpanded(true)}
-              className="font-mono text-xs underline underline-offset-2"
-              style={{ color: "var(--gold-dark)" }}
+              className="font-mono text-xs underline underline-offset-2 transition-colors hover:text-[var(--gold-bright)]"
+              style={{ color: "var(--gold)" }}
             >
               Read more &gt;
             </button>
@@ -194,20 +202,20 @@ function FitScale() {
   ];
 
   return (
-    <div className="mb-6">
+    <div className="mb-6 animate-fade-in delay-200">
       <p className="font-medium mb-3" style={{ fontFamily: "var(--font-cormorant)", fontSize: 17, color: "var(--ink)" }}>
         Fit Scale
       </p>
       <div className="flex gap-3 mb-1.5">
         {segments.map((s) => (
-          <div key={s.key} className="flex-1">
-            <p className="text-xs font-mono mb-1" style={{ color: "var(--warm-gray)" }}>{s.pct}%</p>
-            <div className="rounded-full overflow-hidden" style={{ height: 4, background: "var(--border)" }}>
+          <div key={s.key} className="flex-1 hover-lift group cursor-default">
+            <p className="text-xs font-mono mb-1 transition-colors duration-300 group-hover:text-[var(--gold)]" style={{ color: "var(--warm-gray)" }}>{s.pct}%</p>
+            <div className="rounded-full overflow-hidden origin-left transition-transform duration-300 group-hover:scale-x-105" style={{ height: 4, background: "var(--border)" }}>
               <div
-                className="h-full rounded-full"
+                className="h-full rounded-full transition-all duration-1000"
                 style={{
                   width: `${s.pct}%`,
-                  background: s.key === "true" ? "#C9A84C" : "var(--warm-gray)",
+                  background: s.key === "true" ? "var(--gold)" : "var(--warm-gray)",
                   opacity: s.key === "true" ? 1 : 0.4,
                 }}
               />
@@ -233,12 +241,14 @@ function FilterTab({
   return (
     <button
       onClick={onClick}
-      className="px-3 py-2 text-xs font-mono tracking-widest uppercase rounded transition-all duration-200 whitespace-nowrap"
+      className="px-3 py-2 text-xs font-mono tracking-widest uppercase rounded transition-all duration-200 whitespace-nowrap hover:bg-[var(--gold-subtle)] hover:text-[var(--gold)] hover:shadow-md"
       style={{
         background: active ? "var(--gold)" : "transparent",
         color: active ? "#fff" : "var(--warm-gray)",
         border: active ? "none" : "0.5px solid var(--border)",
         fontWeight: active ? 500 : 400,
+        boxShadow: active ? "var(--shadow-md)" : "none",
+        transform: active ? "translateY(-1px)" : "none",
       }}
     >
       {label}
@@ -254,10 +264,10 @@ function RatingSummary({ avg, total }: { avg: number; total: number }) {
   }));
 
   return (
-    <div className="sticky top-20">
+    <div className="glass-card sticky top-20 rounded-2xl p-6 hover-lift">
       <div className="mb-4">
         <div className="flex items-baseline gap-3 mb-2">
-          <span style={{ fontFamily: "var(--font-cormorant)", fontSize: 52, fontWeight: 300, color: "var(--gold)", lineHeight: 1 }}>
+          <span className="gold-shimmer" style={{ fontFamily: "var(--font-cormorant)", fontSize: 52, fontWeight: 300, lineHeight: 1 }}>
             {avg.toFixed(1)}
           </span>
           <div>
@@ -271,13 +281,13 @@ function RatingSummary({ avg, total }: { avg: number; total: number }) {
         {breakdown.map(({ star, count }) => {
           const pct = total > 0 ? (count / total) * 100 : 0;
           return (
-            <div key={star} className="flex items-center gap-2 mb-1.5">
-              <span className="text-xs font-mono w-2" style={{ color: "var(--warm-gray)" }}>{star}</span>
-              <div className="flex-1 rounded-full overflow-hidden" style={{ height: 4, background: "var(--border)" }}>
+            <div key={star} className="flex items-center gap-2 mb-1.5 group cursor-default">
+              <span className="text-xs font-mono w-2 transition-colors group-hover:text-[var(--gold)]" style={{ color: "var(--warm-gray)" }}>{star}</span>
+              <div className="flex-1 rounded-full overflow-hidden origin-left transition-transform duration-300 group-hover:scale-x-105" style={{ height: 4, background: "var(--border)" }}>
                 <div className="h-full rounded-full transition-all duration-700"
-                  style={{ width: `${pct}%`, background: "#C9A84C" }} />
+                  style={{ width: `${pct}%`, background: "var(--gold)" }} />
               </div>
-              <span className="text-xs font-mono w-3" style={{ color: "var(--warm-gray)" }}>{count}</span>
+              <span className="text-xs font-mono w-3 transition-colors group-hover:text-[var(--gold)]" style={{ color: "var(--warm-gray)" }}>{count}</span>
             </div>
           );
         })}
@@ -317,16 +327,18 @@ export default function ReviewsPage() {
 
   return (
     <div
-      className="min-h-screen"
-      style={{ background: "var(--parchment)", fontFamily: "var(--font-cormorant)" }}
+      className="min-h-screen animate-fade-in relative"
+      style={{ fontFamily: "var(--font-cormorant)" }}
     >
+
       {/* ── Page header ─────────────────────────────── */}
       <div
-        className="sticky top-0 z-40"
+        className="sticky top-0 z-40 transition-all duration-300"
         style={{
-          background: "rgba(248,245,240,0.95)",
-          backdropFilter: "blur(8px)",
-          borderBottom: "0.5px solid var(--border)",
+          background: "rgba(242,250,246,0.95)",
+          backdropFilter: "blur(12px)",
+          borderBottom: "1px solid var(--border-soft)",
+          boxShadow: "var(--shadow-sm)",
         }}
       >
         <div className="mx-auto px-5 md:px-8 lg:px-12" style={{ maxWidth: 1200 }}>
@@ -334,10 +346,10 @@ export default function ReviewsPage() {
             <div className="flex items-center gap-3">
               <a
                 href="/"
-                className="flex items-center gap-1.5 text-xs font-mono tracking-widest uppercase transition-opacity hover:opacity-60"
+                className="group flex items-center gap-1.5 text-xs font-mono tracking-widest uppercase transition-colors hover:text-[var(--gold)]"
                 style={{ color: "var(--warm-gray)" }}
               >
-                <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" className="transition-transform duration-300 group-hover:-translate-x-1">
                   <path d="M9 2L4 7l5 5" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
                 <span className="hidden sm:inline">Back</span>
@@ -357,7 +369,7 @@ export default function ReviewsPage() {
         </div>
       </div>
 
-      <div className="mx-auto px-5 md:px-8 lg:px-12 py-8" style={{ maxWidth: 1200 }}>
+      <div className="relative z-10 mx-auto px-5 md:px-8 lg:px-12 py-8" style={{ maxWidth: 1200 }}>
         {/*
           Responsive layout:
           - mobile: stacked (summary on top, reviews below)
@@ -376,7 +388,7 @@ export default function ReviewsPage() {
 
             {/* Filter tabs */}
             <div className="mb-2">
-              <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-hide" style={{ scrollbarWidth: "none" }}>
+              <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-hide animate-fade-up delay-100" style={{ scrollbarWidth: "none" }}>
                 <FilterTab label="All Reviews" active={tab === "all"} onClick={() => setTab("all")} />
                 <FilterTab label="Photos / Videos" active={tab === "photos"} onClick={() => setTab("photos")} />
                 <FilterTab label="Newest" active={tab === "newest"} onClick={() => setTab("newest")} />
@@ -397,11 +409,11 @@ export default function ReviewsPage() {
                   <button
                     key={n}
                     onClick={() => setRatingFilter(ratingFilter === n ? null : n)}
-                    className="flex items-center gap-1 px-2 py-1 rounded text-xs font-mono transition-all"
+                    className="flex items-center gap-1 px-2 py-1 rounded text-xs font-mono transition-all duration-200 hover:bg-[var(--gold-subtle)]"
                     style={{
                       border: ratingFilter === n ? "0.5px solid var(--gold)" : "0.5px solid var(--border)",
-                      background: ratingFilter === n ? "rgba(201,168,76,0.08)" : "transparent",
-                      color: ratingFilter === n ? "var(--gold-dark)" : "var(--warm-gray)",
+                      background: ratingFilter === n ? "var(--gold-subtle)" : "transparent",
+                      color: ratingFilter === n ? "var(--gold)" : "var(--warm-gray)",
                     }}
                   >
                     {n}★
@@ -417,11 +429,11 @@ export default function ReviewsPage() {
                   <button
                     key={f}
                     onClick={() => setFitFilter(f)}
-                    className="px-2 py-1 rounded text-xs font-mono capitalize transition-all"
+                    className="px-2 py-1 rounded text-xs font-mono capitalize transition-all duration-200 hover:bg-[var(--gold-subtle)]"
                     style={{
                       border: fitFilter === f ? "0.5px solid var(--gold)" : "0.5px solid var(--border)",
-                      background: fitFilter === f ? "rgba(201,168,76,0.08)" : "transparent",
-                      color: fitFilter === f ? "var(--gold-dark)" : "var(--warm-gray)",
+                      background: fitFilter === f ? "var(--gold-subtle)" : "transparent",
+                      color: fitFilter === f ? "var(--gold)" : "var(--warm-gray)",
                     }}
                   >
                     {f === "all" ? "All Fits" : f === "true" ? "True to Size" : f === "small" ? "Runs Small" : "Runs Large"}
@@ -455,16 +467,16 @@ export default function ReviewsPage() {
                 </p>
                 <button
                   onClick={() => { setRatingFilter(null); setFitFilter("all"); setTab("all"); }}
-                  className="mt-4 text-xs font-mono underline underline-offset-2"
-                  style={{ color: "var(--gold-dark)" }}
+                  className="mt-4 text-xs font-mono underline underline-offset-2 transition-colors hover:text-[var(--gold-bright)]"
+                  style={{ color: "var(--gold)" }}
                 >
                   Clear all filters
                 </button>
               </div>
             ) : (
               <div>
-                {filtered.map((review) => (
-                  <ReviewCard key={review.id} review={review} />
+                {filtered.map((review, i) => (
+                  <ReviewCard key={review.id} review={review} index={i} />
                 ))}
               </div>
             )}

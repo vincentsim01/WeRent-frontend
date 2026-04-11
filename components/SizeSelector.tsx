@@ -11,41 +11,48 @@ export default function SizeSelector({ sizes, defaultSize }: SizeSelectorProps) 
   const [selected, setSelected] = useState(defaultSize);
 
   return (
-    <div
-      className="flex items-center justify-between py-3"
-      style={{ borderTop: "0.5px solid var(--border)", borderBottom: "0.5px solid var(--border)" }}
-    >
-      <div className="flex items-center gap-2">
-        <span
-          className="text-xs font-mono tracking-widest uppercase"
-          style={{ color: "var(--warm-gray)" }}
+    <div className="py-5">
+      <div className="flex items-center justify-between mb-4">
+        <span className="section-label">Select Size</span>
+        <button
+          className="transition-all duration-200 hover:text-[var(--gold)]"
+          style={{
+            fontFamily: "var(--font-montserrat)",
+            fontSize: 9,
+            letterSpacing: "0.15em",
+            textTransform: "uppercase",
+            color: "var(--text-muted)",
+            borderBottom: "1px solid var(--border-strong)",
+            paddingBottom: 1,
+          }}
         >
-          Size
-        </span>
-        <div className="flex gap-1.5 ml-2">
-          {sizes.map((s) => (
-            <button
-              key={s}
-              onClick={() => setSelected(s)}
-              className="w-8 h-8 text-xs font-mono rounded transition-all duration-200"
-              style={{
-                border: s === selected ? "1px solid var(--gold)" : "0.5px solid var(--border)",
-                background: s === selected ? "rgba(201,168,76,0.08)" : "transparent",
-                color: s === selected ? "var(--gold)" : "var(--warm-gray)",
-                fontWeight: s === selected ? 500 : 400,
-              }}
-            >
-              {s}
-            </button>
-          ))}
-        </div>
+          Size Guide
+        </button>
       </div>
-      <button
-        className="text-xs font-mono tracking-widest uppercase underline underline-offset-2"
-        style={{ color: "var(--warm-gray)", fontSize: 10 }}
-      >
-        Size Guide
-      </button>
+      <div className="flex gap-2 flex-wrap">
+        {sizes.map((s) => (
+          <button
+            key={s}
+            onClick={() => setSelected(s)}
+            className="relative flex items-center justify-center rounded-lg transition-all duration-300 active:scale-95"
+            style={{
+              width: 46,
+              height: 46,
+              fontFamily: "var(--font-montserrat)",
+              fontSize: 12,
+              fontWeight: s === selected ? 600 : 400,
+              border: s === selected ? "1.5px solid var(--gold)" : "1px solid var(--border-strong)",
+              background: s === selected
+                ? "linear-gradient(135deg, var(--gold-pale), #f7fdfb)"
+                : "var(--white)",
+              color: s === selected ? "var(--gold)" : "var(--text-secondary)",
+              boxShadow: s === selected ? "0 4px 16px rgba(27,122,90,0.18)" : "var(--shadow-sm)",
+            }}
+          >
+            {s}
+          </button>
+        ))}
+      </div>
     </div>
   );
 }

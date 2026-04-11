@@ -9,117 +9,317 @@ import AddToCartBar from "@/components/AddToCartBar";
 import RentalInfoBanner from "@/components/RentalInfoBanner";
 import RelatedProducts from "@/components/RelatedProducts";
 
+export const metadata = {
+  title: `${product.name} — WeRent`,
+  description: `Rent the ${product.name} by ${product.designer}. Premium fashion rental for every occasion.`,
+};
+
 export default function ProductPage() {
   return (
     <main
-      className="min-h-screen"
-      style={{ background: "var(--parchment)", fontFamily: "var(--font-cormorant)" }}
+      className="min-h-screen relative"
+      style={{ fontFamily: "var(--font-cormorant)" }}
     >
-      <div className="mx-auto pb-32 w-[90%] md:w-[90%]">
 
-        {/* Header */}
-        <Header />
 
-        {/* Image Gallery — overlaps behind header */}
-        <div className="animate-fade-in" style={{ marginTop: -52 }}>
-          <ProductImageGallery images={product.images} productName={product.name} />
-        </div>
+      {/* ── Header ── */}
+      <Header />
 
-        {/* Content */}
-        <div className="px-5 pt-5">
+      {/* ── Main content wrapper ── */}
+      <div
+        className="relative z-10 mx-auto px-4 sm:px-6 lg:px-8 pb-32"
+        style={{ maxWidth: 1200 }}
+      >
 
-          {/* Title + Rating */}
-          <div className="animate-fade-up">
-            <h1 className="font-light leading-snug mb-3" style={{ color: "var(--ink)", fontSize: 26, letterSpacing: "-0.01em" }}>
-              {product.name}
-            </h1>
-            <div className="flex items-center gap-2 mb-4">
-              <StarRating rating={product.averageRating} size={16} />
-              <span className="text-sm font-mono" style={{ color: "var(--ink)", fontWeight: 500 }}>
-                {product.averageRating.toFixed(1)}
-              </span>
-              <span className="text-xs font-mono tracking-widest uppercase" style={{ color: "var(--warm-gray)" }}>
-                {product.reviewCount} reviews
-              </span>
-            </div>
+        {/* ══ Desktop 2-col / Mobile 1-col product section ══ */}
+        <div className="lg:grid lg:grid-cols-2 lg:gap-16 xl:gap-24 pt-8 lg:pt-12">
+
+          {/* LEFT — Image Gallery (sticky on desktop) */}
+          <div className="lg:sticky lg:top-24 lg:self-start animate-fade-in">
+            <ProductImageGallery images={product.images} productName={product.name} />
           </div>
 
-          {/* Size Selector */}
-          <div className="animate-fade-up delay-100">
-            <SizeSelector sizes={product.sizes.map((s) => s.size)} defaultSize={product.selectedSize} />
-          </div>
+          {/* RIGHT — Product Info */}
+          <div className="mt-8 lg:mt-0">
 
-          <div style={{ height: "0.5px", background: "var(--border)", margin: "20px 0" }} />
-
-          {/* Designer */}
-          <div className="animate-fade-up delay-200">
-            <div className="flex items-center justify-between mb-3">
-              <p className="text-xs font-mono tracking-widest uppercase" style={{ color: "var(--warm-gray)" }}>Designer</p>
-              <button className="text-xs font-mono tracking-widest uppercase underline underline-offset-2" style={{ color: "var(--warm-gray)", fontSize: 10 }}>
-                View the Collection
-              </button>
+            {/* Breadcrumb / brand tag */}
+            <div className="animate-fade-up flex items-center gap-2 mb-5">
+              <span
+                className="px-3 py-1 rounded-full"
+                style={{
+                  fontFamily: "var(--font-montserrat)",
+                  fontSize: 9,
+                  fontWeight: 600,
+                  letterSpacing: "0.2em",
+                  textTransform: "uppercase",
+                  color: "var(--gold)",
+                  background: "linear-gradient(135deg, #f7fdfb, var(--gold-pale))",
+                  border: "1px solid var(--gold-border)",
+                }}
+              >
+                {product.designer}
+              </span>
+              <span
+                className="px-3 py-1 rounded-full"
+                style={{
+                  fontFamily: "var(--font-montserrat)",
+                  fontSize: 9,
+                  letterSpacing: "0.16em",
+                  textTransform: "uppercase",
+                  color: "var(--text-muted)",
+                  background: "var(--ivory)",
+                  border: "1px solid var(--border-soft)",
+                }}
+              >
+                New Collection
+              </span>
             </div>
-            <div className="flex items-center justify-between p-4 rounded-lg" style={{ border: "0.5px solid var(--border)", background: "#fdfaf6" }}>
-              <div>
-                <span style={{ fontFamily: "var(--font-cormorant)", fontSize: 24, fontWeight: 400, letterSpacing: "-0.02em", color: "var(--ink)" }}>
-                  {product.designer}
+
+            {/* Product title */}
+            <div className="animate-fade-up delay-100">
+              <h1
+                style={{
+                  fontFamily: "var(--font-cormorant)",
+                  fontSize: "clamp(28px, 4vw, 42px)",
+                  fontWeight: 300,
+                  color: "var(--text-primary)",
+                  letterSpacing: "-0.02em",
+                  lineHeight: 1.15,
+                  marginBottom: 16,
+                }}
+              >
+                {product.name}
+              </h1>
+
+              {/* Rating */}
+              <div className="flex items-center gap-3 mb-2">
+                <StarRating rating={product.averageRating} size={16} />
+                <span
+                  style={{
+                    fontFamily: "var(--font-dm-mono)",
+                    fontSize: 14,
+                    fontWeight: 500,
+                    color: "var(--text-primary)",
+                  }}
+                >
+                  {product.averageRating.toFixed(1)}
                 </span>
-                <p className="text-xs font-mono mt-1 tracking-widest uppercase" style={{ color: "var(--warm-gray)" }}>Est. Jakarta 2019</p>
-              </div>
-              <div className="w-14 h-14 rounded-full overflow-hidden flex items-end justify-center" style={{ background: "#2a2620" }}>
-                <svg viewBox="0 0 56 56" width="56" height="56" xmlns="http://www.w3.org/2000/svg">
-                  <rect width="56" height="56" fill="#2a2620" />
-                  <ellipse cx="28" cy="20" rx="10" ry="11" fill="#4a4440" />
-                  <path d="M8,58 Q10,38 28,35 Q46,38 48,58 Z" fill="#4a4440" />
-                </svg>
+                <span
+                  style={{
+                    fontFamily: "var(--font-montserrat)",
+                    fontSize: 10,
+                    letterSpacing: "0.1em",
+                    color: "var(--text-muted)",
+                    textTransform: "uppercase",
+                  }}
+                >
+                  {product.reviewCount} reviews
+                </span>
               </div>
             </div>
-          </div>
 
-          <div style={{ height: "0.5px", background: "var(--border)", margin: "20px 0" }} />
+            {/* Price highlight */}
+            <div
+              className="animate-fade-up delay-200 flex items-center gap-3 my-5 px-4 py-3 rounded-xl"
+              style={{
+                background: "linear-gradient(135deg, #f7fdfb, var(--gold-pale))",
+                border: "1px solid var(--gold-border)",
+                display: "inline-flex",
+              }}
+            >
+              <p
+                className="gold-shimmer"
+                style={{
+                  fontFamily: "var(--font-cormorant)",
+                  fontSize: 28,
+                  fontWeight: 400,
+                  lineHeight: 1,
+                }}
+              >
+                {product.currency} {new Intl.NumberFormat("id-ID").format(product.rentPrice)}
+              </p>
+              <span
+                style={{
+                  fontFamily: "var(--font-montserrat)",
+                  fontSize: 10,
+                  color: "var(--text-muted)",
+                  letterSpacing: "0.08em",
+                }}
+              >
+                / {product.rentDays} days
+              </span>
+            </div>
 
-          {/* Product Details */}
-          <div className="animate-fade-up delay-300">
-            <p className="text-xs font-mono tracking-widest uppercase mb-4" style={{ color: "var(--warm-gray)" }}>Product Detail</p>
-            <div>
-              {[
-                { label: "Fabric", value: product.fabric },
-                { label: "Fit", value: product.fit },
-                { label: "Care", value: "Dry Clean Only" },
-                { label: "Origin", value: "Jakarta, Indonesia" },
-              ].map((row, i, arr) => (
-                <div key={row.label} className="flex justify-between items-center py-3" style={{ borderBottom: i < arr.length - 1 ? "0.5px solid var(--border)" : "none" }}>
-                  <span className="text-xs font-mono tracking-widest uppercase" style={{ color: "var(--warm-gray)" }}>{row.label}</span>
-                  <span className="text-sm font-mono tracking-wide uppercase" style={{ color: "var(--ink)" }}>{row.value}</span>
+            {/* Luxury divider */}
+            <div className="luxury-divider animate-fade-up delay-200" />
+
+            {/* Size Selector */}
+            <div className="animate-fade-up delay-300">
+              <SizeSelector sizes={product.sizes.map((s) => s.size)} defaultSize={product.selectedSize} />
+            </div>
+
+            {/* Divider */}
+            <div className="luxury-divider animate-fade-up delay-300" />
+
+            {/* Designer */}
+            <div className="animate-fade-up delay-400">
+              <div className="flex items-center justify-between mb-4">
+                <span className="section-label">Designer</span>
+                <button
+                  style={{
+                    fontFamily: "var(--font-montserrat)",
+                    fontSize: 9,
+                    letterSpacing: "0.14em",
+                    textTransform: "uppercase",
+                    color: "var(--gold)",
+                    borderBottom: "1px solid var(--gold-border)",
+                    paddingBottom: 1,
+                  }}
+                >
+                  View Collection
+                </button>
+              </div>
+
+              <div className="flex items-center justify-between p-5 rounded-2xl hover-lift glass-card">
+                <div>
+                  <p
+                    style={{
+                      fontFamily: "var(--font-cormorant)",
+                      fontSize: 28,
+                      fontWeight: 300,
+                      letterSpacing: "-0.02em",
+                      color: "var(--text-primary)",
+                      marginBottom: 4,
+                    }}
+                  >
+                    {product.designer}
+                  </p>
+                  <p
+                    style={{
+                      fontFamily: "var(--font-montserrat)",
+                      fontSize: 9,
+                      letterSpacing: "0.18em",
+                      textTransform: "uppercase",
+                      color: "var(--text-muted)",
+                    }}
+                  >
+                    Est. Jakarta 2019
+                  </p>
                 </div>
-              ))}
+
+                <div
+                  className="flex items-center justify-center rounded-full"
+                  style={{
+                    width: 54,
+                    height: 54,
+                    background: "linear-gradient(135deg, var(--gold-pale), #f7fdfb)",
+                    border: "1.5px solid var(--gold-border)",
+                    boxShadow: "0 4px 16px rgba(27,122,90,0.15)",
+                  }}
+                >
+                  <span
+                    className="gold-shimmer"
+                    style={{
+                      fontFamily: "var(--font-cormorant)",
+                      fontSize: 24,
+                      fontWeight: 300,
+                    }}
+                  >
+                    {product.designer.charAt(0).toUpperCase()}
+                  </span>
+                </div>
+              </div>
             </div>
-            <SizeGuideTable sizes={product.sizes} selectedSize={product.selectedSize} />
+
+            {/* Divider */}
+            <div className="luxury-divider animate-fade-up delay-400" />
+
+            {/* Product Details */}
+            <div className="animate-fade-up delay-500">
+              <p className="section-label mb-5">Product Details</p>
+
+              <div className="rounded-2xl overflow-hidden glass-card">
+                {[
+                  { label: "Fabric", value: product.fabric },
+                  { label: "Fit", value: product.fit },
+                  { label: "Care", value: "Dry Clean Only" },
+                  { label: "Origin", value: "Jakarta, Indonesia" },
+                ].map((row, i, arr) => (
+                  <div
+                    key={row.label}
+                    className="flex justify-between items-center px-5 py-4 transition-colors duration-200 hover:bg-[var(--gold-subtle)]"
+                    style={{
+                      background: i % 2 === 0 ? "var(--white)" : "var(--cream)",
+                      borderBottom: i < arr.length - 1 ? "1px solid var(--border-soft)" : "none",
+                    }}
+                  >
+                    <span
+                      style={{
+                        fontFamily: "var(--font-montserrat)",
+                        fontSize: 9,
+                        fontWeight: 600,
+                        letterSpacing: "0.16em",
+                        textTransform: "uppercase",
+                        color: "var(--text-muted)",
+                      }}
+                    >
+                      {row.label}
+                    </span>
+                    <span
+                      style={{
+                        fontFamily: "var(--font-cormorant)",
+                        fontSize: 17,
+                        fontWeight: 400,
+                        color: "var(--text-secondary)",
+                      }}
+                    >
+                      {row.value}
+                    </span>
+                  </div>
+                ))}
+              </div>
+
+              <SizeGuideTable sizes={product.sizes} selectedSize={product.selectedSize} />
+            </div>
           </div>
-
-          <div style={{ height: "0.5px", background: "var(--border)", margin: "24px 0" }} />
-
-          {/* Reviews */}
-          <div className="animate-fade-up delay-400">
-            <ReviewsSection reviews={product.reviews} averageRating={product.averageRating} reviewCount={product.reviewCount} />
-          </div>
-
-          <div style={{ height: "0.5px", background: "var(--border)", margin: "28px 0 24px" }} />
         </div>
 
-        {/* Rental Info */}
-        <div className="animate-fade-up delay-500">
+        {/* ══ Full-width sections below ══ */}
+
+        {/* Divider */}
+        <div className="luxury-divider mt-16" />
+
+        {/* Reviews — full width */}
+        <div className="animate-fade-up delay-100 mb-12">
+          <ReviewsSection
+            reviews={product.reviews}
+            averageRating={product.averageRating}
+            reviewCount={product.reviewCount}
+          />
+        </div>
+
+        {/* Divider */}
+        <div className="luxury-divider" />
+
+        {/* Rental Info Banner */}
+        <div className="animate-fade-up delay-200">
           <RentalInfoBanner />
         </div>
 
         {/* Related Products */}
-        <div className="animate-fade-up delay-500">
+        <div className="animate-fade-up delay-300 pb-8">
           <RelatedProducts />
         </div>
+
       </div>
 
-      {/* Sticky Cart Bar */}
-      <AddToCartBar price={product.rentPrice} currency={product.currency} days={product.rentDays} productName={product.name} />
+      {/* Sticky bottom bar */}
+      <AddToCartBar
+        price={product.rentPrice}
+        currency={product.currency}
+        days={product.rentDays}
+        productName={product.name}
+      />
     </main>
   );
 }

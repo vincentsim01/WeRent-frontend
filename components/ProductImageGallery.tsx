@@ -7,104 +7,136 @@ interface ProductImageGalleryProps {
   productName: string;
 }
 
-export default function ProductImageGallery({
-  images,
-  productName,
-}: ProductImageGalleryProps) {
+export default function ProductImageGallery({ images, productName }: ProductImageGalleryProps) {
   const [active, setActive] = useState(0);
 
-  console.log("Rendering ProductImageGallery with images:", images);
-
   return (
-    <div className="relative w-full bg-[#1a1714]" style={{ aspectRatio: "3/2" }}>
-      {/* Placeholder dress illustration */}
-      <div className="absolute inset-0 flex items-center justify-center">
-        {/* <svg
-          viewBox="0 0 240 380"
-          width="220"
-          height="340"
-          xmlns="http://www.w3.org/2000/svg"
-          aria-label={`Product image of ${productName}`}
-        >
-
-          <ellipse cx="120" cy="48" rx="28" ry="32" fill="#3a3630" />
-
-          <path
-            d="M68,88 Q88,78 104,84 L110,300 Q120,308 130,300 L136,84 Q152,78 172,88 L185,220 Q178,320 120,325 Q62,320 55,220 Z"
-            fill="#2a2620"
-          />
-   
-          <path
-            d="M104,84 Q120,94 136,84 L138,100 Q120,112 102,100 Z"
-            fill="#1e1c18"
-          />
-   
-          {[
-            [115, 92], [120, 88], [125, 92],
-            [112, 98], [120, 96], [128, 98],
-            [108, 104], [116, 102], [124, 102], [132, 104],
-          ].map(([cx, cy], i) => (
-            <circle key={i} cx={cx} cy={cy} r="1.5" fill="#C9A84C" opacity="0.9" />
-          ))}
- 
-          <line x1="120" y1="84" x2="120" y2="325" stroke="#333" strokeWidth="1" opacity="0.4" />
- 
-          <path d="M68,88 L56,152 Q60,158 68,154 L74,104" fill="#252018" />
-          <path d="M172,88 L184,152 Q180,158 172,154 L166,104" fill="#252018" />
-  
-          <path
-            d="M66,290 Q120,300 174,290"
-            stroke="#C9A84C"
-            strokeWidth="0.8"
-            fill="none"
-            opacity="0.6"
-          />
-
-          <path d="M100,318 Q112,325 114,330 L107,332 Q104,332 100,326 Z" fill="#1a1714" />
-          <path d="M140,318 Q128,325 126,330 L133,332 Q136,332 140,326 Z" fill="#1a1714" />
-     
-          <line x1="113" y1="330" x2="113" y2="342" stroke="#1a1714" strokeWidth="2" />
-          <line x1="127" y1="330" x2="127" y2="342" stroke="#1a1714" strokeWidth="2" />
-        </svg> */}
-
-
-        <img src={images[active]} alt={`Product image of ${productName}`} className="w-auto max-h-[80%] object-contain" />
-
-              {/* Prev */}
-              <button
-                onClick={() => setActive((active - 1 + images.length) % images.length)}
-                className="absolute left-2 top-1/2 -translate-y-1/2 bg-black/50 text-white px-3 py-1 text-4xl"
-              >
-                ‹
-              </button>
-
-              {/* Next */}
-              <button
-                onClick={() => setActive((active + 1) % images.length)}
-                className="absolute right-2 top-1/2 -translate-y-1/2 bg-black/50 text-white px-3 py-1 text-4xl"
-              >
-                ›
-              </button>
-       
-      </div>
-
-      {/* Source caption */}
-      <div className="absolute bottom-10 right-3 text-xs text-white/50 italic font-mono" style={{ fontSize: 11 }}>
-        source: Amina Moroccan Abaya
-      </div>
-
-      {/* Dot navigation */}
-      <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5">
-        {images.map((_, i) => (
+    <div className="flex flex-col lg:flex-row gap-4 w-full">
+      {/* Thumbnail column — desktop left, bottom on mobile */}
+      <div className="order-2 lg:order-1 flex lg:flex-col gap-2 px-4 lg:px-0 lg:pl-0 overflow-x-auto lg:overflow-visible">
+        {images.map((src, i) => (
           <button
             key={i}
             onClick={() => setActive(i)}
-            aria-label={`View image ${i + 1}`}
-            className={`w-1.5 h-1.5 rounded-full transition-all duration-300 ${
-              i === active ? "bg-white scale-125" : "bg-white/40"
-            }`}
+            className="flex-shrink-0 rounded-lg overflow-hidden transition-all duration-300"
+            style={{
+              width: 64,
+              height: 80,
+              border: i === active
+                ? "2px solid var(--gold)"
+                : "1.5px solid var(--border-soft)",
+              opacity: i === active ? 1 : 0.55,
+              transform: i === active ? "scale(1.04)" : "scale(1)",
+              boxShadow: i === active ? "0 4px 16px rgba(27,122,90,0.2)" : "none",
+            }}
+          >
+            <img src={src} alt={`View ${i + 1}`} className="w-full h-full object-cover" />
+          </button>
+        ))}
+      </div>
+
+      {/* Main image */}
+      <div
+        className="order-1 lg:order-2 relative flex-1 rounded-2xl overflow-hidden"
+        style={{
+          background: "var(--ivory)",
+          aspectRatio: "4/5",
+          minHeight: 380,
+        }}
+      >
+        {/* Subtle pattern overlay */}
+        <div
+          className="absolute inset-0 pointer-events-none z-10"
+          style={{
+            background: "radial-gradient(ellipse 70% 50% at 50% 20%, rgba(255,255,255,0.5) 0%, transparent 70%)",
+          }}
+        />
+
+        {images.map((src, i) => (
+          <img
+            key={i}
+            src={src}
+            alt={`${productName} — image ${i + 1}`}
+            className="absolute inset-0 w-full h-full object-contain transition-all duration-700"
+            style={{
+              opacity: i === active ? 1 : 0,
+              transform: i === active ? "scale(1)" : "scale(1.03)",
+            }}
           />
         ))}
+
+        {/* Nav arrows */}
+        {images.length > 1 && (
+          <>
+            <button
+              onClick={() => setActive((active - 1 + images.length) % images.length)}
+              className="absolute left-3 top-1/2 -translate-y-1/2 z-20 flex items-center justify-center rounded-full transition-all duration-200 hover:scale-110 active:scale-95"
+              style={{
+                width: 38,
+                height: 38,
+                background: "rgba(255,255,255,0.9)",
+                border: "1px solid var(--border-soft)",
+                boxShadow: "var(--shadow-md)",
+              }}
+            >
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                <path d="M8 2L3 6l5 4" stroke="var(--text-secondary)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </button>
+            <button
+              onClick={() => setActive((active + 1) % images.length)}
+              className="absolute right-3 top-1/2 -translate-y-1/2 z-20 flex items-center justify-center rounded-full transition-all duration-200 hover:scale-110 active:scale-95"
+              style={{
+                width: 38,
+                height: 38,
+                background: "rgba(255,255,255,0.9)",
+                border: "1px solid var(--border-soft)",
+                boxShadow: "var(--shadow-md)",
+              }}
+            >
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                <path d="M4 2l5 4-5 4" stroke="var(--text-secondary)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </button>
+          </>
+        )}
+
+        {/* Counter badge */}
+        <div
+          className="absolute bottom-3 right-3 z-20 px-3 py-1.5 rounded-full"
+          style={{
+            background: "rgba(255,255,255,0.85)",
+            backdropFilter: "blur(8px)",
+            border: "1px solid var(--border-soft)",
+            boxShadow: "var(--shadow-sm)",
+          }}
+        >
+          <span
+            style={{
+              fontFamily: "var(--font-dm-mono)",
+              fontSize: 10,
+              color: "var(--text-secondary)",
+            }}
+          >
+            {active + 1} / {images.length}
+          </span>
+        </div>
+
+        {/* Dot nav */}
+        <div className="absolute bottom-3 left-1/2 -translate-x-1/2 z-20 flex gap-1.5">
+          {images.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => setActive(i)}
+              className="rounded-full transition-all duration-400"
+              style={{
+                width: i === active ? 20 : 6,
+                height: 6,
+                background: i === active ? "var(--gold)" : "rgba(26,22,16,0.2)",
+              }}
+            />
+          ))}
+        </div>
       </div>
     </div>
   );

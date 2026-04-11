@@ -7,76 +7,70 @@ interface SizeGuideTableProps {
 
 export default function SizeGuideTable({ sizes, selectedSize }: SizeGuideTableProps) {
   return (
-    <div className="mt-3">
-      <p
-        className="text-xs font-mono tracking-widest uppercase mb-3"
-        style={{ color: "var(--warm-gray)" }}
+    <div
+      className="mt-5 rounded-xl overflow-hidden"
+      style={{
+        border: "1px solid var(--border-soft)",
+        boxShadow: "var(--shadow-sm)",
+      }}
+    >
+      <div
+        className="grid grid-cols-3 px-5 py-3"
+        style={{
+          background: "var(--ivory)",
+          borderBottom: "1px solid var(--border-soft)",
+        }}
       >
-        Size Guide
-      </p>
-      <table className="w-full" style={{ borderCollapse: "collapse" }}>
-        <thead>
-          <tr>
-            {["Size", "Bust", "Length"].map((h) => (
-              <th
-                key={h}
-                className="text-left pb-2 text-xs font-mono tracking-widest uppercase"
-                style={{
-                  color: "var(--warm-gray)",
-                  borderBottom: "0.5px solid var(--border)",
-                  paddingRight: "12px",
-                }}
-              >
-                {h}
-              </th>
-            ))}
-          </tr>
-        </thead>
-        <tbody>
-          {sizes.map((row) => {
-            const isActive = row.size === selectedSize;
-            return (
-              <tr
-                key={row.size}
-                style={{
-                  borderBottom: "0.5px solid var(--border)",
-                  background: isActive ? "rgba(201,168,76,0.06)" : "transparent",
-                }}
-              >
-                <td
-                  className="py-2.5 text-sm font-mono"
-                  style={{
-                    color: isActive ? "var(--gold)" : "var(--ink)",
-                    fontWeight: isActive ? 500 : 400,
-                    paddingRight: "12px",
-                  }}
-                >
-                  {row.size}
-                </td>
-                <td
-                  className="py-2.5 text-sm"
-                  style={{
-                    color: isActive ? "var(--ink)" : "var(--warm-gray)",
-                    fontWeight: isActive ? 500 : 400,
-                    paddingRight: "12px",
-                  }}
-                >
-                  {row.bust}
-                </td>
-                <td
-                  className="py-2.5 text-sm"
-                  style={{
-                    color: isActive ? "var(--ink)" : "var(--warm-gray)",
-                    fontWeight: isActive ? 500 : 400,
-                  }}
-                >
-                  {row.length}
-                </td>
-              </tr>
-            );
-          })}
-        </tbody>
-      </table>
+        {["Size", "Bust", "Length"].map((h) => (
+          <span key={h} className="section-label text-center">{h}</span>
+        ))}
+      </div>
+
+      {sizes.map((s, i) => {
+        const isSelected = s.size === selectedSize;
+        return (
+          <div
+            key={s.size}
+            className="grid grid-cols-3 px-5 py-3.5 transition-colors duration-200"
+            style={{
+              background: isSelected ? "linear-gradient(90deg, #f7fdfb, var(--gold-pale), #f7fdfb)" : "var(--white)",
+              borderBottom: i < sizes.length - 1 ? "1px solid var(--border-soft)" : "none",
+            }}
+          >
+            <span
+              className="text-center"
+              style={{
+                fontFamily: "var(--font-montserrat)",
+                fontSize: 12,
+                fontWeight: isSelected ? 600 : 400,
+                color: isSelected ? "var(--gold)" : "var(--text-secondary)",
+              }}
+            >
+              {s.size}
+            </span>
+            <span
+              className="text-center"
+              style={{
+                fontFamily: "var(--font-dm-mono)",
+                fontSize: 12,
+                color: isSelected ? "var(--text-primary)" : "var(--text-muted)",
+              }}
+            >
+              {s.bust}
+            </span>
+            <span
+              className="text-center"
+              style={{
+                fontFamily: "var(--font-dm-mono)",
+                fontSize: 12,
+                color: isSelected ? "var(--text-primary)" : "var(--text-muted)",
+              }}
+            >
+              {s.length}
+            </span>
+          </div>
+        );
+      })}
     </div>
   );
 }

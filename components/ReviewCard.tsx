@@ -7,54 +7,100 @@ interface ReviewCardProps {
 
 export default function ReviewCard({ review }: ReviewCardProps) {
   return (
-    <div
-      className="p-4 rounded-lg"
-      style={{ border: "0.5px solid var(--border)", background: "#fdfaf6" }}
-    >
-      <div className="flex items-center gap-3 mb-3">
-        {/* Avatar */}
-        <div
-          className="w-10 h-10 rounded-full flex items-center justify-center text-sm font-mono flex-shrink-0"
-          style={{
-            background: review.avatarBg,
-            color: review.avatarColor,
-            fontWeight: 500,
-          }}
-        >
-          {review.initials}
-        </div>
-
-        <div className="flex-1 min-w-0">
-          <div className="flex items-center gap-2">
-            <p className="text-sm font-medium truncate" style={{ color: "var(--ink)" }}>
-              {review.name}
-            </p>
-            {review.verified && (
-              <span
-                className="text-xs font-mono px-1.5 py-0.5 rounded"
+    <div className="glass-card rounded-xl p-5 hover-lift">
+      <div className="flex items-start justify-between mb-4">
+        <div className="flex items-center gap-3">
+          <div
+            className="flex-shrink-0 flex items-center justify-center rounded-full"
+            style={{
+              width: 40,
+              height: 40,
+              background: review.avatarBg,
+              border: "1.5px solid rgba(27,122,90,0.2)",
+            }}
+          >
+            <span
+              style={{
+                fontFamily: "var(--font-montserrat)",
+                fontSize: 12,
+                fontWeight: 600,
+                color: review.avatarColor,
+              }}
+            >
+              {review.initials}
+            </span>
+          </div>
+          <div>
+            <div className="flex items-center gap-2">
+              <p
                 style={{
-                  background: "rgba(201,168,76,0.12)",
-                  color: "var(--gold-dark)",
-                  fontSize: 10,
+                  fontFamily: "var(--font-montserrat)",
+                  fontSize: 13,
+                  fontWeight: 500,
+                  color: "var(--text-primary)",
                 }}
               >
-                verified
-              </span>
-            )}
+                {review.name}
+              </p>
+              {review.verified && (
+                <span
+                  className="flex items-center gap-1 px-2 py-0.5 rounded-sm"
+                  style={{
+                    background: "var(--gold)",
+                  }}
+                >
+                  <svg width="8" height="8" viewBox="0 0 10 10" fill="none">
+                    <circle cx="5" cy="5" r="4.5" fill="white" />
+                    <path d="M3 5l1.2 1.2L7 3.5" stroke="var(--gold)" strokeWidth="1.2" strokeLinecap="round" />
+                  </svg>
+                  <span
+                    style={{
+                      fontFamily: "var(--font-montserrat)",
+                      fontSize: 8,
+                      fontWeight: 700,
+                      color: "white",
+                      letterSpacing: "0.08em",
+                    }}
+                  >
+                    VERIFIED
+                  </span>
+                </span>
+              )}
+            </div>
+            <p
+              style={{
+                fontFamily: "var(--font-dm-mono)",
+                fontSize: 10,
+                color: "var(--text-light)",
+                marginTop: 2,
+              }}
+            >
+              {review.date}
+            </p>
           </div>
-          <p className="text-xs font-mono mt-0.5" style={{ color: "var(--warm-gray)" }}>
-            {review.date}
-          </p>
         </div>
+        <StarRating rating={review.rating} size={13} />
       </div>
 
-      <StarRating rating={review.rating} size={14} />
+      <div
+        style={{
+          height: "1px",
+          background: "var(--border-soft)",
+          marginBottom: 14,
+        }}
+      />
 
       <p
-        className="mt-2 text-sm leading-relaxed"
-        style={{ color: "var(--warm-gray)", fontFamily: "var(--font-cormorant)", fontSize: 15 }}
+        className="leading-relaxed"
+        style={{
+          fontFamily: "var(--font-cormorant)",
+          fontSize: 17,
+          fontStyle: "italic",
+          color: "var(--text-secondary)",
+          lineHeight: 1.75,
+        }}
       >
-        {review.text}
+        "{review.text}"
       </p>
     </div>
   );

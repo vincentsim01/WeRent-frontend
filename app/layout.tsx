@@ -25,7 +25,15 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={cormorant.variable}>
-      <body>{children}</body>
+      <body className="relative">
+        {/* Grain texture for luxury feel */}
+        <div className="bg-texture-grain" />
+
+        {/* ── Main Content ── */}
+        <main className="relative z-10">
+          {children}
+        </main>
+      </body>
     </html>
   );
 }
