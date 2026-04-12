@@ -14,6 +14,7 @@ interface RelatedProduct {
   reviewCount: number;
   accentColor: string;
   bgColor: string;
+  imageUrl: string;
 }
 
 const related: RelatedProduct[] = [
@@ -28,6 +29,7 @@ const related: RelatedProduct[] = [
     reviewCount: 12,
     accentColor: "#c8b890",
     bgColor: "#f5f0e4",
+    imageUrl: "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=800&q=80",
   },
   {
     id: "rp2",
@@ -40,6 +42,7 @@ const related: RelatedProduct[] = [
     reviewCount: 9,
     accentColor: "#8ca8c0",
     bgColor: "#eef2f8",
+    imageUrl: "https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=800&q=80",
   },
   {
     id: "rp3",
@@ -52,30 +55,25 @@ const related: RelatedProduct[] = [
     reviewCount: 6,
     accentColor: "#c8a0a8",
     bgColor: "#f5eef0",
+    imageUrl: "https://images.unsplash.com/photo-1503341455253-b2e723bb3dbb?auto=format&fit=crop&w=800&q=80",
   },
 ];
 
-function ProductThumbnail({ color, accent }: { color: string; accent: string }) {
+function ProductThumbnail({ imageUrl, name }: { imageUrl: string; name: string }) {
   return (
-    <div
-      className="w-full rounded-xl overflow-hidden flex items-center justify-center relative"
-      style={{ aspectRatio: "2/3", background: color }}
-    >
+    <div className="w-full rounded-xl overflow-hidden flex items-center justify-center relative" style={{ aspectRatio: "2/3" }}>
+      <img
+        src={imageUrl}
+        alt={name}
+        className="w-full h-full object-cover"
+        loading="lazy"
+      />
       <div
         className="absolute inset-0"
         style={{
-          background: `radial-gradient(ellipse at 50% 20%, rgba(255,255,255,0.6) 0%, transparent 60%)`,
+          background: "linear-gradient(180deg, rgba(0,0,0,0.02) 0%, rgba(0,0,0,0.18) 100%)",
         }}
       />
-      <svg viewBox="0 0 80 120" width="52" height="80" xmlns="http://www.w3.org/2000/svg">
-        <ellipse cx="40" cy="16" rx="10" ry="11" fill={accent} opacity="0.6" />
-        <path
-          d="M22,28 Q30,24 36,27 L38,100 Q40,103 42,100 L44,27 Q50,24 58,28 L62,76 Q59,106 40,108 Q21,106 18,76 Z"
-          fill={accent}
-          opacity="0.45"
-        />
-        <path d="M36,27 Q40,30 44,27 L45,42 Q40,46 35,42 Z" fill={accent} opacity="0.6" />
-      </svg>
     </div>
   );
 }
@@ -137,7 +135,7 @@ export default function RelatedProducts() {
 
             <div className="overflow-hidden rounded-xl transition-shadow duration-300 group-hover:shadow-[var(--shadow-lg)]">
               <div className="transition-transform duration-500 group-hover:scale-105">
-                <ProductThumbnail color={item.bgColor} accent={item.accentColor} />
+                <ProductThumbnail imageUrl={item.imageUrl} name={item.name} />
               </div>
             </div>
 
