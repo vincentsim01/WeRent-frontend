@@ -1,119 +1,92 @@
 "use client";
 
 import { useState } from "react";
-import { Review } from "@/lib/data";
-import ReviewCard from "./ReviewCard";
-import StarRating from "./StarRating";
+import type { ReviewFull } from "@/lib/reviews-data";
+import AllReviewsCard from "@/components/reviews/AllReviewsCard";
+import ReviewStars from "@/components/reviews/ReviewStars";
 
 interface ReviewsSectionProps {
-  reviews: Review[];
+  reviews: ReviewFull[];
   averageRating: number;
   reviewCount: number;
+  productName: string;
+  brandName: string;
 }
 
+/** WeRent Figma — sans-serif, #4F6D4F, summary + cards + Browse All Reviews */
 export default function ReviewsSection({
   reviews,
   averageRating,
   reviewCount,
+  productName,
+  brandName,
 }: ReviewsSectionProps) {
   const [showAll, setShowAll] = useState(false);
-  const displayed = showAll ? reviews : reviews.slice(0, 2);
+  /** First screen: one card like the capture; “Browse all” reveals the rest */
+  const initialVisible = 1;
+  const displayed = showAll ? reviews : reviews.slice(0, initialVisible);
+  const hasMore = reviews.length > initialVisible;
 
   return (
-    <div className="mt-2">
-      {/* Section header */}
-      <div className="flex items-center justify-between mb-4">
-        <p
-          className="text-xs font-mono tracking-widest uppercase"
-          style={{ color: "var(--warm-gray)" }}
+    <section
+      id="product-reviews"
+      aria-labelledby="pdp-reviews-heading"
+      className="rounded-2xl px-4 py-8 sm:px-6 sm:py-10"
+      style={{
+        fontFamily: "var(--font-montserrat), system-ui, sans-serif",
+        background: "var(--werent-figma-page)",
+      }}
+    >
+      <h2
+        id="pdp-reviews-heading"
+        className="mb-6 text-[1.75rem] font-bold leading-tight tracking-tight sm:text-[2rem]"
+        style={{ color: "var(--werent-figma-text)" }}
+      >
+        Reviews
+      </h2>
+
+      {/* Rating row — angka + bintang hijau (spt capture) */}
+      <div className="mb-3 flex flex-wrap items-center gap-3 sm:gap-4">
+        <span
+          className="text-[2.75rem] font-semibold leading-none tabular-nums sm:text-[3rem]"
+          style={{ color: "var(--werent-figma-text)" }}
         >
-          Reviews ({reviewCount})
-        </p>
-        <div className="flex items-center gap-2">
-          <StarRating rating={averageRating} size={13} />
-          <span className="text-sm font-mono" style={{ color: "var(--ink)", fontWeight: 500 }}>
-            {averageRating.toFixed(1)}
-          </span>
-        </div>
+          {averageRating.toFixed(1)}
+        </span>
+        <ReviewStars rating={averageRating} size={20} variant="figma" />
       </div>
 
-      {/* Rating breakdown */}
-      <div className="mb-5 p-4 rounded-lg" style={{ background: "#fdfaf6", border: "0.5px solid var(--border)" }}>
-        <div className="flex items-center gap-4">
-          <div className="text-center">
-            <p className="text-4xl font-light" style={{ color: "var(--gold)", fontFamily: "var(--font-cormorant)" }}>
-              {averageRating.toFixed(1)}
-            </p>
-            <StarRating rating={averageRating} size={12} />
-            <p className="text-xs font-mono mt-1" style={{ color: "var(--warm-gray)" }}>
-              {reviewCount} reviews
-            </p>
-          </div>
-          <div className="flex-1">
-            {[5, 4, 3, 2, 1].map((star) => {
-              const count = reviews.filter((r) => Math.round(r.rating) === star).length;
-              const pct = reviewCount > 0 ? (count / reviewCount) * 100 : 0;
-              return (
-                <div key={star} className="flex items-center gap-2 mb-1">
-                  <span className="text-xs font-mono w-2" style={{ color: "var(--warm-gray)" }}>
-                    {star}
-                  </span>
-                  <div
-                    className="flex-1 rounded-full overflow-hidden"
-                    style={{ height: 4, background: "var(--border)" }}
-                  >
-                    <div
-                      className="h-full rounded-full transition-all duration-700"
-                      style={{ width: `${pct}%`, background: "var(--gold)" }}
-                    />
-                  </div>
-                  <span className="text-xs font-mono w-3" style={{ color: "var(--warm-gray)" }}>
-                    {count}
-                  </span>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </div>
+      <p className="mb-8 max-w-xl text-[14px] leading-relaxed sm:text-[15px]" style={{ color: "var(--werent-figma-muted)" }}>
+        {reviewCount} Reviews for {productName} by {brandName}
+      </p>
 
-      {/* Review cards */}
-      <div className="flex flex-col gap-3">
+      <div className="flex flex-col gap-6">
         {displayed.map((review) => (
-          <ReviewCard key={review.id} review={review} />
+          <AllReviewsCard key={review.id} review={review} />
         ))}
       </div>
 
-      {/* View more button */}
-      {reviews.length > 2 && (
-        <div className="flex gap-2 mt-3">
+      {hasMore && (
+        <div className="mt-8">
           <button
+            type="button"
             onClick={() => setShowAll(!showAll)}
-            className="flex-1 py-3 text-xs font-mono tracking-widest uppercase rounded transition-all duration-200"
+            className="rounded-full px-10 py-3.5 text-[13px] font-semibold tracking-wide text-white transition-colors sm:text-sm"
             style={{
-              border: "0.5px solid var(--border)",
-              color: "var(--warm-gray)",
-              background: "transparent",
+              background: "var(--werent-figma-green)",
+              boxShadow: "0 2px 12px rgba(79, 109, 79, 0.35)",
             }}
-            onMouseEnter={(e) => (e.currentTarget.style.background = "rgba(201,168,76,0.06)")}
-            onMouseLeave={(e) => (e.currentTarget.style.background = "transparent")}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.background = "var(--werent-figma-green-hover)";
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.background = "var(--werent-figma-green)";
+            }}
           >
-            {showAll ? "Show Less" : "Show More"}
+            {showAll ? "Show less" : "Browse All Reviews"}
           </button>
-          <a
-            href="/reviews"
-            className="flex-1 py-3 text-xs font-mono tracking-widest uppercase rounded text-center transition-all duration-200"
-            style={{
-              border: "0.5px solid var(--gold)",
-              color: "#b8963f",
-              background: "rgba(201,168,76,0.05)",
-              textDecoration: "none",
-            }}
-          >
-            All {reviewCount} Reviews →
-          </a>
         </div>
       )}
-    </div>
+    </section>
   );
 }

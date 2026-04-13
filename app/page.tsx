@@ -101,7 +101,13 @@ export default function ProductPage() {
 
           {/* Reviews */}
           <div className="animate-fade-up delay-400">
-            <ReviewsSection reviews={product.reviews} averageRating={product.averageRating} reviewCount={product.reviewCount} />
+            <ReviewsSection
+              reviews={product.reviews}
+              averageRating={product.averageRating}
+              reviewCount={product.reviewCount}
+              productName={product.name}
+              brandName={product.designer}
+            />
           </div>
 
           <div style={{ height: "0.5px", background: "var(--border)", margin: "28px 0 24px" }} />

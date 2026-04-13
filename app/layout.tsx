@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 
-import { Cormorant } from "next/font/google";
+import { Cormorant, Montserrat } from "next/font/google";
 
 const cormorant = Cormorant({
   subsets: ["latin"],
@@ -9,6 +9,11 @@ const cormorant = Cormorant({
   variable: "--font-cormorant",
 });
 
+const montserrat = Montserrat({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-montserrat",
+});
 
 export const metadata: Metadata = {
   title: "WeRent — Black Kaftan with Embellishment",
@@ -24,7 +29,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={cormorant.variable}>
+    <html lang="en" className={`${cormorant.variable} ${montserrat.variable}`}>
       <body>{children}</body>
     </html>
   );

@@ -14,6 +14,10 @@ const config: Config = {
           light: "#DFC070",
           dark: "#b8963f",
         },
+        forest: {
+          DEFAULT: "#1e3d2f",
+          hover: "#2a5240",
+        },
       },
       fontFamily: {
         sans: ["var(--font-cormorant)", "serif"],
