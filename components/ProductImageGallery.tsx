@@ -13,8 +13,6 @@ export default function ProductImageGallery({
 }: ProductImageGalleryProps) {
   const [active, setActive] = useState(0);
 
-  console.log("Rendering ProductImageGallery with images:", images);
-
   return (
     <div className="relative w-full bg-[#1a1714]" style={{ aspectRatio: "3/2" }}>
       {/* Placeholder dress illustration */}

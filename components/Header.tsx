@@ -47,6 +47,17 @@ export default function Header() {
 
         {/* Actions */}
         <div className="flex items-center gap-3">
+          {/* Light/Dark Mode Toggle */}
+          <button
+            className="transition-transform active:scale-90"
+            aria-label="Toggle light/dark mode"
+          > 
+              <svg className="w-6 h-6 text-yellow-500" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M9 21h6v-1H9v1zm3-20C8.1 1 5 4.1 5 8c0 2.5 1.2 4.7 3 6.1V17c0 .6.4 1 1 1h6c.6 0 1-.4 1-1v-2.9c1.8-1.4 3-3.6 3-6.1 0-3.9-3.1-7-7-7zm2 12.5V16h-4v-2.5C8.9 11.9 8 10.1 8 8c0-2.8 2.2-5 5-5s5 2.2 5 5c0 2.1-.9 3.9-3 5.5z"/>
+              </svg>
+
+
+          </button>
           {/* Wishlist */}
           <button
             onClick={() => setWishlist(!wishlist)}

@@ -109,5 +109,5 @@ export const product: Product = {
       verified: false,
     },
   ],
-  images: ["/Dress1.webp","/Dress2.png"],
+  images: ["/Dress1.webp","/Dress2.png","/Dress3.png"],
 };

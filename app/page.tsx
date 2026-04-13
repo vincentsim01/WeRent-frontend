@@ -1,5 +1,6 @@
 import { product } from "@/lib/data";
 import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 import ProductImageGallery from "@/components/ProductImageGallery";
 import StarRating from "@/components/StarRating";
 import SizeSelector from "@/components/SizeSelector";
