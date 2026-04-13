@@ -1,5 +1,7 @@
 "use client";
 
+import { useId } from "react";
+
 interface StarRatingProps {
   rating: number;
   max?: number;
@@ -7,12 +9,15 @@ interface StarRatingProps {
 }
 
 export default function StarRating({ rating, max = 5, size = 16 }: StarRatingProps) {
+  const uid = useId();
+
   return (
     <div className="flex items-center gap-0.5" aria-label={`${rating} out of ${max} stars`}>
       {Array.from({ length: max }, (_, i) => {
         const val = i + 1;
         const filled = val <= Math.floor(rating);
         const half = !filled && val === Math.ceil(rating) && rating % 1 >= 0.3;
+        const gradId = `${uid}-half-${i}`;
 
         return (
           <svg
@@ -25,7 +30,7 @@ export default function StarRating({ rating, max = 5, size = 16 }: StarRatingPro
           >
             {half && (
               <defs>
-                <linearGradient id={`half-${i}`}>
+                <linearGradient id={gradId}>
                   <stop offset="50%" stopColor="var(--gold)" />
                   <stop offset="50%" stopColor="transparent" />
                 </linearGradient>
@@ -37,7 +42,7 @@ export default function StarRating({ rating, max = 5, size = 16 }: StarRatingPro
                 filled
                   ? "var(--gold)"
                   : half
-                  ? `url(#half-${i})`
+                  ? `url(#${gradId})`
                   : "none"
               }
               stroke="var(--gold)"
