@@ -24,39 +24,39 @@ export default function Footer() {
                 </div>
                 {/* Help */}
                 <div className=''>
-                    <div><h3 className='text-2xl text-center'>Help</h3></div>
+                    <div><h3 className='text-2xl text-center font-bold'>Help</h3></div>
                     <div className='flex flex-col items-center gap-2 mt-2 mb-2'>
-                        <p>Privacy Policy</p>
-                        <p>FAQ</p>
+                        <p className='hover:underline cursor-pointer'>Privacy Policy</p>
+                        <p className='hover:underline cursor-pointer'>FAQ</p>
                     </div>
                 </div>
                 {/* Payment */}
                 <div className=''>
-                    <div><h3 className='text-2xl text-center'>Payment Method</h3></div>
+                    <div><h3 className='text-2xl text-center font-bold'>Payment Method</h3></div>
                     <div></div>
                     <div className='flex justify-center items-center gap-4 mt-2'>
-                        <img src='/gopay.jpeg' alt='GoPay' className='w-[20px] md:w-[35px]' />
-                        <img src='/ovo.png' alt='OVO' className='w-[20px] md:w-[35px]' />
-                        <img src='/dana.png' alt='Dana' className='w-[20px] md:w-[35px]' />
-                        <img src='/visa.png' alt='Visa' className='w-[20px] md:w-[35px]'/>
-                        <img src='/mastercard.png' alt='Mastercard' className='w-[20px] md:w-[35px]' />
+                        <img src='/gopay.jpeg' alt='GoPay' className='w-[20px] md:w-[35px] hover:scale-105 cursor-pointer' />
+                        <img src='/ovo.png' alt='OVO' className='w-[20px] md:w-[35px] hover:scale-105 cursor-pointer' />
+                        <img src='/dana.png' alt='Dana' className='w-[20px] md:w-[35px] hover:scale-105 cursor-pointer' />
+                        <img src='/visa.png' alt='Visa' className='w-[20px] md:w-[35px] hover:scale-105 cursor-pointer'/>
+                        <img src='/mastercard.png' alt='Mastercard' className='w-[20px] md:w-[35px] hover:scale-105 cursor-pointer' />
                     </div>
                 </div>
                 <div className=''>
-                    <div><h3 className='text-2xl text-center'>Connect With Us</h3></div>
+                    <div><h3 className='text-2xl text-center font-bold'>Connect With Us</h3></div>
                     <div className='flex justify-center gap-4 mt-2'>
-                        <img src='/facebook.png' alt='Facebook' className='w-[20px] md:w-[35px]' />
-                        <img src='/instagram.png' alt='Instagram' className='w-[20px] md:w-[35px]' />
-                        <img src='/tiktok.png' alt='TikTok' className='w-[20px] md:w-[35px]' />
-                        <img src='/x.png' alt='X' className='w-[20px] md:w-[35px]' />
+                        <img src='/facebook.png' alt='Facebook' className='w-[20px] md:w-[35px] hover:scale-105 cursor-pointer' />
+                        <img src='/instagram.png' alt='Instagram' className='w-[20px] md:w-[35px] hover:scale-105  cursor-pointer' />
+                        <img src='/tiktok.png' alt='TikTok' className='w-[20px] md:w-[35px] hover:scale-105 cursor-pointer' />
+                        <img src='/x.png' alt='X' className='w-[20px] md:w-[35px] hover:scale-105 cursor-pointer' />
                     </div>
                 </div>
             </div>
             <div className='flex justify-evenly items-start h-[25vh] text-sm bg-green-700 text-white'>
                 <span>© {year} WeRent. All rights reserved.</span>
-                <span className='ml-4'>Terms of Service</span>
-                <span className='ml-4'>Privacy Policy</span>
-                <span className='ml-4'>Sitemap</span>
+                <span className='ml-4 hover:underline cursor-pointer'>Terms of Service</span>
+                <span className='ml-4 hover:underline cursor-pointer'>Privacy Policy</span>
+                <span className='ml-4 hover:underline cursor-pointer'>Sitemap</span>
             </div>
         </div>
 
