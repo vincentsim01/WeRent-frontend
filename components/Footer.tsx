@@ -10,8 +10,8 @@ export default function Footer() {
         setYear(new Date().getFullYear());
     }, []);
     return(
-        <div className='md:h-[25vh] h-[60vh]' style={{fontFamily:"serif, var(--font-montserrat), var(--font-cormorant), system-ui,sans-serif"}}>
-            <div className='md:flex md:justify-evenly md:items-center h-full bg-green-700 text-white gap-5' style={{    background: "var(--werent-figma-green)", fontFamily:"var(--font-montserrat), var(--font-cormorant),system-ui,sans-serif"}}>
+        <div className='md:h-[25vh] h-[60vh]' style={{fontFamily:"sans-serif, var(--font-montserrat), var(--font-cormorant), system-ui, serif"}}>
+            <div className='md:flex md:justify-evenly md:items-center h-full bg-green-700 text-white gap-5' style={{    background: "var(--werent-figma-green)", fontFamily:"var(--font-montserrat),system-ui,sans-serif"}}>
                 {/* left footer */}
                 <div className='p-5 flex flex-col items-center md:items-start gap-3'>
                     <div className="relative w-[150px] md:w-[200px]">
@@ -23,7 +23,7 @@ export default function Footer() {
                     </p>
                 </div>
                 {/* Help */}
-                <div className=''>
+                <div className='' style={{fontFamily:"sans-serif"}}>
                     <div><h3 className='text-2xl text-center font-bold'>Help</h3></div>
                     <div className='flex flex-col items-center gap-2 mt-2 mb-2'>
                         <p className='hover:underline cursor-pointer'>Privacy Policy</p>
@@ -31,7 +31,7 @@ export default function Footer() {
                     </div>
                 </div>
                 {/* Payment */}
-                <div className=''>
+                <div className='' style={{fontFamily:"sans-serif"}}>
                     <div><h3 className='text-2xl text-center font-bold'>Payment Method</h3></div>
                     <div></div>
                     <div className='flex justify-center items-center gap-4 mt-2'>
@@ -42,7 +42,7 @@ export default function Footer() {
                         <img src='/mastercard.png' alt='Mastercard' className='w-[20px] md:w-[35px] hover:scale-105 cursor-pointer' />
                     </div>
                 </div>
-                <div className=''>
+                <div className='' style={{fontFamily:"var(--font-montserrat)"}}>
                     <div><h3 className='text-2xl text-center font-bold'>Connect With Us</h3></div>
                     <div className='flex justify-center gap-4 mt-2'>
                         <img src='/facebook.png' alt='Facebook' className='w-[20px] md:w-[35px] hover:scale-105 cursor-pointer' />
