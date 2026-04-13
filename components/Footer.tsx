@@ -11,7 +11,7 @@ export default function Footer() {
     }, []);
     return(
         <div className='md:h-[25vh] h-[60vh]'>
-            <div className='md:flex md:justify-evenly md:items-center h-full bg-green-700 text-white gap-5'>
+            <div className='md:flex md:justify-evenly md:items-center h-full bg-green-700 text-white gap-5' style={{    background: "var(--werent-figma-green)", fontFamily:"var(--font-montserrat), var(--font-cormorant),system-ui,sans-serif"}}>
                 {/* left footer */}
                 <div className='p-5 flex flex-col items-center md:items-start gap-3'>
                     <div className="relative w-[150px] md:w-[200px]">
@@ -52,7 +52,7 @@ export default function Footer() {
                     </div>
                 </div>
             </div>
-            <div className='flex justify-evenly items-start h-[25vh] text-sm bg-green-700 text-white'>
+            <div className='flex justify-evenly items-start h-[25vh] text-sm text-white' style={{    background: "var(--werent-figma-green)"}}>
                 <span>© {year} WeRent. All rights reserved.</span>
                 <span className='ml-4 hover:underline cursor-pointer'>Terms of Service</span>
                 <span className='ml-4 hover:underline cursor-pointer'>Privacy Policy</span>

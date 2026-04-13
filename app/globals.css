@@ -14,6 +14,19 @@
   --parchment: #f8f5f0;
   --warm-gray: #8a8279;
   --border: #e8e2d9;
+  /* All Reviews page (Figma) */
+  --forest: #1e3d2f;
+  --forest-hover: #2a5240;
+  --review-card-bg: #ffffff;
+  --review-star-ink: #1a1714;
+  /* Reviews block — Figma (WERENT capture) */
+  --werent-figma-green: #4f6d4f;
+  --werent-figma-green-hover: #3d5a3d;
+  --werent-figma-text: #333333;
+  --werent-figma-muted: #888888;
+  --werent-figma-line: #cccccc;
+  --werent-figma-surface: #ffffff;
+  --werent-figma-page: #f9f9f9;
 }
 
 * {
