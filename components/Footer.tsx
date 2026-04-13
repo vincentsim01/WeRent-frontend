@@ -10,7 +10,7 @@ export default function Footer() {
         setYear(new Date().getFullYear());
     }, []);
     return(
-        <div className='md:h-[25vh] h-[60vh]'>
+        <div className='md:h-[25vh] h-[60vh]' style={{fontFamily:"serif, var(--font-montserrat), var(--font-cormorant), system-ui,sans-serif"}}>
             <div className='md:flex md:justify-evenly md:items-center h-full bg-green-700 text-white gap-5' style={{    background: "var(--werent-figma-green)", fontFamily:"var(--font-montserrat), var(--font-cormorant),system-ui,sans-serif"}}>
                 {/* left footer */}
                 <div className='p-5 flex flex-col items-center md:items-start gap-3'>
@@ -18,7 +18,7 @@ export default function Footer() {
                         <Image src='/werent-logo-green.png' alt='WeRent Footer' width={200} height={100} />
                     </div>
                     <br></br>
-                    <p className='text-center md:text-left'>
+                    <p className='text-center md:text-left' style={{fontFamily:"sans-serif"}}>
                         We Rent. We Return. We Repeat. 
                     </p>
                 </div>
