@@ -10,8 +10,8 @@ export default function Footer() {
         setYear(new Date().getFullYear());
     }, []);
     return(
-        <div className='md:h-[25vh] h-[70vh]'>
-            <div className='md:flex md:justify-evenly md:items-center h-full bg-[var(--werent-green-1)] text-white gap-5' style={{    background: "var(--werent-figma-green)"}}>
+        <div className='md:h-[25vh] h-[70vh] pt-15'>
+            <div className='md:flex md:justify-evenly pt-15 md:items-center h-full bg-[var(--werent-green-1)] text-white gap-5' style={{    background: "var(--werent-green-2)"}}>
                 {/* left footer */}
                 <div className='p-5 flex flex-col items-center md:items-start gap-3 '>
                     <div className="relative w-[150px] md:w-[200px]">
@@ -26,8 +26,8 @@ export default function Footer() {
                 <div className='mb-10'>
                     <div><h3 className='text-2xl text-center font-bold'>Help</h3></div>
                     <div className='flex flex-col items-center gap-2 mt-2 mb-2'>
-                        <p className='hover:underline cursor-pointer hover:text-[var(--werent-figma-green-hover)]'>Privacy Policy</p>
-                        <p className='hover:underline cursor-pointer hover:text-[var(--werent-figma-green-hover)]'>FAQ</p>
+                        <p className='hover:underline cursor-pointer hover:text-[var(--werent-figma-page)]'>Privacy Policy</p>
+                        <p className='hover:underline cursor-pointer hover:text-[var(--werent-figma-page)]'>FAQ</p>
                     </div>
                 </div>
                 {/* Payment */}
@@ -52,11 +52,11 @@ export default function Footer() {
                     </div>
                 </div>
             </div>
-            <div className='flex justify-evenly items-start pt-5 h-[25vh] text-[8px] md:text-[12px]' style={{   background: "var(--werent-figma-green)", color: 'var(--warm-gray)'  }}>
+            <div className='flex justify-evenly items-start pt-5 h-[25vh] text-[8px] md:text-[12px]' style={{   background: "var(--werent-green-2)", color: 'var(--werent-figma-surface)'  }}>
                 <span>© {year} WeRent. All rights reserved.</span>
-                <span className='ml-4 hover:underline hover:text-[var(--werent-figma-green-hover)] cursor-pointer'>Terms of Service</span>
-                <span className='ml-4 hover:underline hover:text-[var(--werent-figma-green-hover)] cursor-pointer'>Privacy Policy</span>
-                <span className='ml-4 hover:underline hover:text-[var(--werent-figma-green-hover)] cursor-pointer'>Sitemap</span>
+                <span className='ml-4 hover:underline hover:text-[var(--werent-figma-page)] cursor-pointer'>Terms of Service</span>
+                <span className='ml-4 hover:underline hover:text-[var(--werent-figma-page)] cursor-pointer'>Privacy Policy</span>
+                <span className='ml-4 hover:underline hover:text-[var(--werent-figma-page)] cursor-pointer'>Sitemap</span>
             </div>
         </div>
 
