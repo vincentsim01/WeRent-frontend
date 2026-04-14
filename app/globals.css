@@ -27,6 +27,13 @@
   --werent-figma-line: #cccccc;
   --werent-figma-surface: #ffffff;
   --werent-figma-page: #f9f9f9;
+  --werent-green-1: #1D3222;
+  --werent-green-2: #4E7C58;
+  --werent-green-3: #43654A;
+  --werent-font-1 : 1.875rem;
+  --werent-font-2 : 1.5rem;
+  --werent-font-3 : 1.25rem;
+  --werent-font-4 : 1rem;
 }
 
 * {

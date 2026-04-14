@@ -1,4 +1,4 @@
-"use client";
+    "use client";
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
@@ -11,7 +11,7 @@ export default function Footer() {
     }, []);
     return(
         <div className='md:h-[25vh] h-[70vh]'>
-            <div className='md:flex md:justify-evenly md:items-center h-full bg-green-700 text-white gap-5' style={{    background: "var(--werent-figma-green)"}}>
+            <div className='md:flex md:justify-evenly md:items-center h-full bg-[var(--werent-green-1)] text-white gap-5' style={{    background: "var(--werent-figma-green)"}}>
                 {/* left footer */}
                 <div className='p-5 flex flex-col items-center md:items-start gap-3 '>
                     <div className="relative w-[150px] md:w-[200px]">
