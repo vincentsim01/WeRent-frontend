@@ -32,179 +32,176 @@ export default function ProductPage() {
         fontFamily: "var(--font-cormorant)",
       }}
     >
-      <div className="mx-auto pb-32 w-[90%] md:w-[90%]">
-        {/* Header */}
-        <header className="wr-header sticky top-0 z-40">
-          <div className="wr-header-inner mx-auto px-4 sm:px-5">
-            <div className="wr-header-top h-12 sm:h-14 flex items-center justify-between">
+      {/* Header */}
+      <header className="wr-header sticky top-0 z-40">
+        <div className="wr-header-inner mx-auto px-4 sm:px-5">
+          <div className="wr-header-top h-12 sm:h-14 flex items-center justify-between">
+            <button
+              className="wr-icon-btn w-8 h-8 flex items-center justify-center transition-opacity hover:opacity-60 sm:hidden"
+              aria-label="Open menu"
+              aria-expanded={isMobileMenuOpen}
+              aria-controls="mobile-navbar-list"
+              onClick={() => setIsMobileMenuOpen((prev) => !prev)}
+            >
+              <svg
+                width="18"
+                height="18"
+                viewBox="0 0 18 18"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                {isMobileMenuOpen ? (
+                  <>
+                    <path
+                      d="M4.2 4.2L13.8 13.8"
+                      stroke="currentColor"
+                      strokeWidth="1.2"
+                      strokeLinecap="round"
+                    />
+                    <path
+                      d="M13.8 4.2L4.2 13.8"
+                      stroke="currentColor"
+                      strokeWidth="1.2"
+                      strokeLinecap="round"
+                    />
+                  </>
+                ) : (
+                  <>
+                    <path
+                      d="M3 5.5H15"
+                      stroke="currentColor"
+                      strokeWidth="1.2"
+                      strokeLinecap="round"
+                    />
+                    <path
+                      d="M3 9H15"
+                      stroke="currentColor"
+                      strokeWidth="1.2"
+                      strokeLinecap="round"
+                    />
+                    <path
+                      d="M3 12.5H15"
+                      stroke="currentColor"
+                      strokeWidth="1.2"
+                      strokeLinecap="round"
+                    />
+                  </>
+                )}
+              </svg>
+            </button>
+
+            <button
+              className="wr-icon-btn w-9 h-9 items-center justify-center transition-opacity hover:opacity-60 hidden sm:flex"
+              aria-label="Search"
+            >
+              <svg
+                width="22"
+                height="22"
+                viewBox="0 0 18 18"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <circle
+                  cx="8"
+                  cy="8"
+                  r="4.8"
+                  stroke="currentColor"
+                  strokeWidth="1.3"
+                />
+                <path
+                  d="M11.6 11.6L15.2 15.2"
+                  stroke="currentColor"
+                  strokeWidth="1.3"
+                  strokeLinecap="round"
+                />
+              </svg>
+            </button>
+
+            <div className="wr-brand-wrap flex items-center justify-center px-3">
+              <img
+                src="/logoremove.png"
+                alt="WeRent"
+                className="wr-brand-logo w-auto object-contain"
+              />
+            </div>
+
+            <div className="wr-header-actions flex items-center gap-2 sm:gap-3">
               <button
-                className="wr-icon-btn w-8 h-8 flex items-center justify-center transition-opacity hover:opacity-60 sm:hidden"
-                aria-label="Open menu"
-                aria-expanded={isMobileMenuOpen}
-                aria-controls="mobile-navbar-list"
-                onClick={() => setIsMobileMenuOpen((prev) => !prev)}
+                className="wr-icon-btn w-9 h-9 items-center justify-center transition-opacity hover:opacity-60 hidden sm:flex"
+                aria-label="Cart"
               >
                 <svg
-                  width="18"
-                  height="18"
-                  viewBox="0 0 18 18"
+                  width="26"
+                  height="26"
+                  viewBox="0 0 16 16"
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
                 >
-                  {isMobileMenuOpen ? (
-                    <>
-                      <path
-                        d="M4.2 4.2L13.8 13.8"
-                        stroke="currentColor"
-                        strokeWidth="1.2"
-                        strokeLinecap="round"
-                      />
-                      <path
-                        d="M13.8 4.2L4.2 13.8"
-                        stroke="currentColor"
-                        strokeWidth="1.2"
-                        strokeLinecap="round"
-                      />
-                    </>
-                  ) : (
-                    <>
-                      <path
-                        d="M3 5.5H15"
-                        stroke="currentColor"
-                        strokeWidth="1.2"
-                        strokeLinecap="round"
-                      />
-                      <path
-                        d="M3 9H15"
-                        stroke="currentColor"
-                        strokeWidth="1.2"
-                        strokeLinecap="round"
-                      />
-                      <path
-                        d="M3 12.5H15"
-                        stroke="currentColor"
-                        strokeWidth="1.2"
-                        strokeLinecap="round"
-                      />
-                    </>
-                  )}
+                  <path
+                    d="M2.3 3.5H4L5.3 9.8h6.1l1.2-4.7H4.8"
+                    fill="currentColor"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                  <circle cx="6.2" cy="12.5" r="0.9" fill="currentColor" />
+                  <circle cx="11" cy="12.5" r="0.9" fill="currentColor" />
                 </svg>
               </button>
-
               <button
                 className="wr-icon-btn w-9 h-9 items-center justify-center transition-opacity hover:opacity-60 hidden sm:flex"
-                aria-label="Search"
+                aria-label="Wishlist"
               >
                 <svg
                   width="22"
                   height="22"
-                  viewBox="0 0 18 18"
+                  viewBox="0 0 16 16"
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
                 >
-                  <circle
-                    cx="8"
-                    cy="8"
-                    r="4.8"
-                    stroke="currentColor"
-                    strokeWidth="1.3"
-                  />
                   <path
-                    d="M11.6 11.6L15.2 15.2"
-                    stroke="currentColor"
-                    strokeWidth="1.3"
-                    strokeLinecap="round"
+                    d="M8 13.7S2.5 10.2 2.5 5.8A2.8 2.8 0 0 1 8 4.4a2.8 2.8 0 0 1 5.5 1.4C13.5 10.2 8 13.7 8 13.7z"
+                    fill="currentColor"
                   />
                 </svg>
               </button>
-
-              <div className="wr-brand-wrap flex items-center justify-center px-3">
-                <img
-                  src="/logoremove.png"
-                  alt="WeRent"
-                  className="wr-brand-logo w-auto object-contain"
-                />
-              </div>
-
-              <div className="wr-header-actions flex items-center gap-2 sm:gap-3">
-                <button
-                  className="wr-icon-btn w-9 h-9 items-center justify-center transition-opacity hover:opacity-60 hidden sm:flex"
-                  aria-label="Wishlist"
-                >
-                  <svg
-                    width="20"
-                    height="20"
-                    viewBox="0 0 16 16"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M8 13.7S2.5 10.2 2.5 5.8A2.8 2.8 0 0 1 8 4.4a2.8 2.8 0 0 1 5.5 1.4C13.5 10.2 8 13.7 8 13.7z"
-                      stroke="currentColor"
-                      strokeWidth="1.2"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
-                </button>
-                <button
-                  className="wr-icon-btn w-9 h-9 items-center justify-center transition-opacity hover:opacity-60 hidden sm:flex"
-                  aria-label="Cart"
-                >
-                  <svg
-                    width="20"
-                    height="20"
-                    viewBox="0 0 16 16"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M2.3 3.5H4L5.3 9.8h6.1l1.2-4.7H4.8"
-                      stroke="currentColor"
-                      strokeWidth="1.2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                    <circle cx="6.2" cy="12.5" r="0.9" fill="currentColor" />
-                    <circle cx="11" cy="12.5" r="0.9" fill="currentColor" />
-                  </svg>
-                </button>
-                <button className="wr-signin-btn h-7 px-3 rounded-full text-[10px] sm:text-[11px] tracking-[0.16em] uppercase transition-colors">
-                  Sign In
-                </button>
-              </div>
+              <button className="wr-signin-btn h-7 px-3 rounded-full text-[10px] sm:text-[11px] tracking-[0.16em] uppercase transition-colors">
+                Sign In
+              </button>
             </div>
+          </div>
 
-            {isMobileMenuOpen && (
-              <nav id="mobile-navbar-list" className="wr-mobile-nav sm:hidden">
-                <ul className="wr-mobile-nav-list">
-                  {navItems.map((item) => (
-                    <li key={item}>
-                      <button
-                        className="wr-mobile-nav-item"
-                        onClick={() => setIsMobileMenuOpen(false)}
-                      >
-                        {item}
-                      </button>
-                    </li>
-                  ))}
-                </ul>
-              </nav>
-            )}
-
-            <nav className="wr-nav h-10 hidden sm:block">
-              <ul className="wr-nav-list h-full flex items-center justify-center gap-4 sm:gap-6 overflow-x-auto whitespace-nowrap scrollbar-hide">
+          {isMobileMenuOpen && (
+            <nav id="mobile-navbar-list" className="wr-mobile-nav sm:hidden">
+              <ul className="wr-mobile-nav-list">
                 {navItems.map((item) => (
                   <li key={item}>
-                    <button className="wr-nav-item text-[10px] sm:text-[11px] tracking-[0.14em] uppercase transition-opacity hover:opacity-60">
+                    <button
+                      className="wr-mobile-nav-item"
+                      onClick={() => setIsMobileMenuOpen(false)}
+                    >
                       {item}
                     </button>
                   </li>
                 ))}
               </ul>
             </nav>
-          </div>
-        </header>
+          )}
 
+          <nav className="wr-nav h-10 hidden sm:block">
+            <ul className="wr-nav-list h-full flex items-center justify-center gap-4 sm:gap-6 overflow-x-auto whitespace-nowrap scrollbar-hide">
+              {navItems.map((item) => (
+                <li key={item}>
+                  <button className="wr-nav-item text-[10px] sm:text-[11px] tracking-[0.14em] uppercase transition-opacity hover:opacity-60">
+                    {item}
+                  </button>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        </div>
+      </header>
+
+      <div className="mx-auto pb-32 w-[90%] md:w-[90%]">
         {/* Image Gallery */}
         <div className="animate-fade-in" style={{ marginTop: 16 }}>
           <ProductImageGallery

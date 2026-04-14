@@ -15,6 +15,29 @@
   --warm-gray: #8a8279;
   --border: #e8e2d9;
   --header-accent: #1d3328;
+  --werent-green-1: #1d3222;
+  --werent-green-2: #4e7c58;
+  --werent-green-3: #43654a;
+  --werent-font-1: 1.5rem;
+  --werent-font-2: 1.25rem;
+  --werent-font-3: 1rem;
+  --werent-font-4: 0.875rem;
+}
+
+.font-size-1 {
+  font-size: var(--werent-font-1);
+}
+
+.font-size-2 {
+  font-size: var(--werent-font-2);
+}
+
+.font-size-3 {
+  font-size: var(--werent-font-3);
+}
+
+.font-size-4 {
+  font-size: var(--werent-font-4);
 }
 
 * {
@@ -26,32 +49,35 @@ html {
 }
 
 body {
-  background-color: var(--parchment);
+  background-color: #f3f3f3;
+  font-family: Raleway, sans-serif;
   color: var(--ink);
-  font-family: var(--font-cormorant), serif;
   -webkit-font-smoothing: antialiased;
 }
 
 .wr-header {
-  background: var(--parchment);
+  background: #ffffff;
   border: none;
 }
 
 .wr-header-inner {
-  max-width: 1200px;
+  max-width: 1300px;
+  width: 100%;
+  border-bottom: 2px solid var(--werent-green-1);
 }
 
 .wr-header-top {
   min-height: 48px;
-  border-bottom: 1px solid var(--ink);
+  border-bottom: none;
 }
 
 .wr-icon-btn {
-  color: var(--header-accent);
+  color: var(--werent-green-1);
 }
 
 .wr-brand-wrap {
   flex: 1;
+  color: var(--werent-green-1);
 }
 
 .wr-brand-logo {
@@ -59,25 +85,26 @@ body {
 }
 
 .wr-header-actions {
-  color: var(--header-accent);
+  color: var(--werent-green-1);
 }
 
 .wr-signin-btn {
-  border: 1px solid var(--header-accent);
-  background: var(--header-accent);
+  border: 1px solid var(--werent-green-1);
+  background: var(--werent-green-1);
   color: #f7f4ef;
-  font-family: var(--font-dm-mono);
-  line-height: 1;
+  font-family: Raleway, sans-serif;
   font-weight: 400;
+  font-size: var(--werent-font-4);
+  line-height: 1;
 }
 
 .wr-signin-btn:hover {
-  background: #2a4637;
-  border-color: #2a4637;
+  background: #16311f;
+  border-color: #16311f;
 }
 
 .wr-nav {
-  border-bottom: 1px solid var(--ink);
+  border-bottom: none;
 }
 
 .wr-nav-list {
@@ -90,12 +117,14 @@ body {
 }
 
 .wr-nav-item {
-  color: var(--ink);
-  font-family: var(--font-dm-mono);
+  color: #000000;
+  font-family: Raleway, sans-serif;
+  font-weight: 400;
+  font-size: var(--werent-font-3);
 }
 
 .wr-mobile-nav {
-  border-bottom: 1px solid var(--ink);
+  border-bottom: none;
   background: var(--parchment);
 }
 
@@ -108,8 +137,9 @@ body {
 .wr-mobile-nav-item {
   width: 100%;
   padding: 10px 0;
-  color: var(--ink);
-  font-family: var(--font-dm-mono);
+  color: #000000;
+  font-family: Raleway, sans-serif;
+  font-weight: 400;
   font-size: 11px;
   letter-spacing: 0.14em;
   text-transform: uppercase;
