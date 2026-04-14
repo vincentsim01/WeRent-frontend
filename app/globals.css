@@ -5,35 +5,44 @@
 @tailwind utilities;
 
 :root {
+  --werent-green-1: #1D3222;
+  --werent-green-2: #4E7C58;
+  --werent-green-3: #43654A;
+
+  --werent-font-1: 1.875rem;
+  --werent-font-2: 1.5rem;
+  --werent-font-3: 1.25rem;
+  --werent-font-4: 1rem;
+
   --font-cormorant: 'Cormorant Garamond', serif;
   --font-montserrat: 'Montserrat', sans-serif;
   --font-dm-mono: 'DM Mono', monospace;
 
-  /* Light Luxury Palette */
+  /* Legacy base colors to prevent breaking existing styles */
   --cream: #f2faf6;
   --ivory: #e8f5ee;
   --linen: #dceee4;
   --blush: #e2f0ea;
   --white: #ffffff;
 
-  /* Jade System — replacing Gold */
-  --gold: #1B7A5A;
-  --gold-bright: #28A070;
-  --gold-light: #5CC49A;
+  /* Map old gold variables to new werent-green variables where necessary */
+  --gold: var(--werent-green-2);
+  --gold-bright: var(--werent-green-1);
+  --gold-light: var(--werent-green-3);
   --gold-pale: #C0E8D8;
-  --gold-subtle: rgba(27, 122, 90, 0.08);
-  --gold-border: rgba(27, 122, 90, 0.25);
+  --gold-subtle: rgba(78, 124, 88, 0.1);
+  --gold-border: rgba(29, 50, 34, 0.25);
 
   /* Text */
-  --text-primary: #101a16;
-  --text-secondary: #3a5a4a;
-  --text-muted: #7a9e8a;
-  --text-light: #a8c2b8;
+  --text-primary: #0A120E;
+  --text-secondary: #1D3222;
+  --text-muted: #264330;
+  --text-light: #4E7C58;
 
   /* Borders */
-  --border-strong: rgba(16, 26, 22, 0.12);
-  --border-soft: rgba(16, 26, 22, 0.07);
-  --border-gold: rgba(27, 122, 90, 0.22);
+  --border-strong: rgba(10, 18, 14, 0.4);
+  --border-soft: rgba(10, 18, 14, 0.25);
+  --border-gold: rgba(29, 50, 34, 0.45);
 
   /* Surfaces */
   --surface-white: #ffffff;
@@ -76,29 +85,33 @@ body {
   overflow-x: hidden;
 }
 
-/* ─── The Unstoppable Animated Background ─── */
+/* ─── Modern Animated Mesh Background ─── */
 body::before,
 body::after {
   content: "";
   position: fixed;
-  inset: -50%;
+  inset: -15%;
   z-index: -1;
   pointer-events: none;
 }
 
 body::before {
-  background: radial-gradient(circle at 30% 30%, rgba(203, 221, 209, 0.37) 0%, transparent 50%),
-    radial-gradient(circle at 70% 70%, rgba(210, 214, 213, 0.246) 0%, transparent 50%);
-  animation: ambientDrift 10s infinite ease-in-out;
-  filter: blur(50px);
+  background: 
+    radial-gradient(circle at 20% 30%, rgba(78, 124, 88, 0.7) 0%, transparent 28%),
+    radial-gradient(circle at 80% 20%, rgba(192, 232, 216, 0.9) 0%, transparent 33%),
+    radial-gradient(circle at 40% 80%, rgba(29, 50, 34, 0.6) 0%, transparent 25%);
+  animation: meshDrift 14s ease-in-out infinite alternate;
+  filter: blur(40px);
 }
 
 body::after {
-  background: radial-gradient(circle at 70% 20%, rgba(157, 255, 0, 0.5) 0%, transparent 40%),
-    radial-gradient(circle at 20% 80%, rgba(150, 169, 148, 0.5) 0%, transparent 50%);
-  animation: ambientDrift 15s infinite ease-in-out reverse;
-  filter: blur(40px);
-  opacity: 0.6;
+  background: 
+    radial-gradient(circle at 70% 60%, rgba(67, 101, 74, 0.7) 0%, transparent 32%),
+    radial-gradient(circle at 30% 50%, rgba(78, 124, 88, 0.6) 0%, transparent 26%),
+    radial-gradient(circle at 90% 90%, rgba(192, 232, 216, 0.7) 0%, transparent 28%);
+  animation: meshDrift 19s ease-in-out infinite alternate-reverse;
+  filter: blur(35px);
+  opacity: 1;
 }
 
 .bg-texture-grain {
@@ -158,15 +171,16 @@ body::after {
   }
 }
 
-@keyframes ambientDrift {
+@keyframes meshDrift {
   0% {
     transform: translate(0, 0) scale(1) rotate(0deg);
   }
-
-  50% {
-    transform: translate(10%, 10%) scale(1.1) rotate(2deg);
+  33% {
+    transform: translate(15%, -10%) scale(1.1) rotate(5deg);
   }
-
+  66% {
+    transform: translate(-10%, 15%) scale(0.9) rotate(-5deg);
+  }
   100% {
     transform: translate(0, 0) scale(1) rotate(0deg);
   }

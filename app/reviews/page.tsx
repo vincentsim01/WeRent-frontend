@@ -243,9 +243,9 @@ function FilterTab({
       onClick={onClick}
       className="px-3 py-2 text-xs font-mono tracking-widest uppercase rounded transition-all duration-200 whitespace-nowrap hover:bg-[var(--gold-subtle)] hover:text-[var(--gold)] hover:shadow-md"
       style={{
-        background: active ? "var(--gold)" : "transparent",
-        color: active ? "#fff" : "var(--warm-gray)",
-        border: active ? "none" : "0.5px solid var(--border)",
+        background: active ? "var(--gold)" : "rgba(255, 255, 255, 0.4)",
+        color: active ? "#fff" : "var(--ink)",
+        border: active ? "none" : "0.5px solid var(--text-secondary)",
         fontWeight: active ? 500 : 400,
         boxShadow: active ? "var(--shadow-md)" : "none",
         transform: active ? "translateY(-1px)" : "none",
@@ -399,7 +399,7 @@ export default function ReviewsPage() {
 
             {/* Secondary filters row */}
             <div className="flex flex-wrap items-center gap-2 mb-6 pt-3" style={{ borderTop: "0.5px solid var(--border)" }}>
-              <span className="text-xs font-mono tracking-widest uppercase" style={{ color: "var(--warm-gray)" }}>
+              <span className="text-xs font-mono tracking-widest uppercase font-semibold" style={{ color: "var(--ink)" }}>
                 Filter:
               </span>
 
@@ -411,9 +411,9 @@ export default function ReviewsPage() {
                     onClick={() => setRatingFilter(ratingFilter === n ? null : n)}
                     className="flex items-center gap-1 px-2 py-1 rounded text-xs font-mono transition-all duration-200 hover:bg-[var(--gold-subtle)]"
                     style={{
-                      border: ratingFilter === n ? "0.5px solid var(--gold)" : "0.5px solid var(--border)",
-                      background: ratingFilter === n ? "var(--gold-subtle)" : "transparent",
-                      color: ratingFilter === n ? "var(--gold)" : "var(--warm-gray)",
+                      border: ratingFilter === n ? "0.5px solid var(--gold)" : "0.5px solid var(--text-secondary)",
+                      background: ratingFilter === n ? "var(--gold-subtle)" : "rgba(255, 255, 255, 0.4)",
+                      color: ratingFilter === n ? "var(--gold)" : "var(--ink)",
                     }}
                   >
                     {n}★
@@ -431,9 +431,9 @@ export default function ReviewsPage() {
                     onClick={() => setFitFilter(f)}
                     className="px-2 py-1 rounded text-xs font-mono capitalize transition-all duration-200 hover:bg-[var(--gold-subtle)]"
                     style={{
-                      border: fitFilter === f ? "0.5px solid var(--gold)" : "0.5px solid var(--border)",
-                      background: fitFilter === f ? "var(--gold-subtle)" : "transparent",
-                      color: fitFilter === f ? "var(--gold)" : "var(--warm-gray)",
+                      border: fitFilter === f ? "0.5px solid var(--gold)" : "0.5px solid var(--text-secondary)",
+                      background: fitFilter === f ? "var(--gold-subtle)" : "rgba(255, 255, 255, 0.4)",
+                      color: fitFilter === f ? "var(--gold)" : "var(--ink)",
                     }}
                   >
                     {f === "all" ? "All Fits" : f === "true" ? "True to Size" : f === "small" ? "Runs Small" : "Runs Large"}
@@ -454,7 +454,7 @@ export default function ReviewsPage() {
             </div>
 
             {/* Results count */}
-            <p className="text-xs font-mono mb-2" style={{ color: "var(--warm-gray)" }}>
+            <p className="text-xs font-mono mb-2 font-medium" style={{ color: "var(--ink)" }}>
               {filtered.length} {filtered.length === 1 ? "review" : "reviews"}
               {(ratingFilter !== null || fitFilter !== "all" || tab !== "all") && " matching filters"}
             </p>
