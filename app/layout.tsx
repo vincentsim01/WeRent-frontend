@@ -2,14 +2,21 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import { Raleway } from 'next/font/google'
 
 import { Cormorant } from "next/font/google";
 
-const cormorant = Cormorant({
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600"],
-  variable: "--font-cormorant",
-});
+// const cormorant = Cormorant({
+//   subsets: ["latin"],
+//   weight: ["300", "400", "500", "600"],
+//   variable: "--font-cormorant",
+// });
+
+const raleway = Raleway({
+  subsets: ['latin'],
+  weight: ['400', '500', '700'], 
+  variable: "--font-raleway", 
+})
 
 
 export const metadata: Metadata = {
@@ -26,7 +33,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={cormorant.variable}>
+    <html lang="en" className={raleway.variable}>
       <body>
         <Header />
         {children}
