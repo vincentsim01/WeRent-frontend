@@ -53,17 +53,17 @@ export default function Footer() {
                         <h3 className="text-lg font-semibold mb-4">Payment Methods</h3>
                         <div className="flex justify-center space-x-3">
                             <img
-                                src="/gopay.jpeg"
+                                src="/gopaywhite.png"
                                 alt="GoPay"
                                 className="w-8 h-8 shadow-md md:w-10 md:h-10 object-contain hover:scale-110 transition-transform duration-200 cursor-pointer"
                             />
                             <img
-                                src="/ovo.png"
+                                src="/ovowhite.png"
                                 alt="OVO"
                                 className="w-8 h-8 shadow-md md:w-10 md:h-10 object-contain hover:scale-110 transition-transform duration-200 cursor-pointer"
                             />
                             <img
-                                src="/dana.png"
+                                src="/danawhite.png"
                                 alt="Dana"
                                 className="w-8 h-8 shadow-md md:w-10 md:h-10 object-contain hover:scale-110 transition-transform duration-200 cursor-pointer"
                             />
