@@ -6,14 +6,14 @@ export default function Footer() {
     const year = new Date().getFullYear();
 
     return (
-        <footer className="bg-[var(--werent-green-2)] text-white">
-            <div className="container mx-auto px-6 py-12">
+        <footer className="bg-[var(--werent-green-1)] text-white h-[80vh] md:h-[50vh]">
+            <div className="container mx-auto px-6 py-12 bg-[var(--werent-green-1)]">
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-8 items-start">
                     {/* Logo and Tagline */}
                     <div className="flex flex-col items-center md:items-start space-y-4">
                         <div className="relative w-[150px] md:w-[200px]">
                             <Image
-                                src="/werent-logo-green.png"
+                                src="/werent-logo.png"
                                 alt="WeRent Logo"
                                 width={200}
                                 height={100}
@@ -49,7 +49,7 @@ export default function Footer() {
                     </div>
 
                     {/* Payment Methods */}
-                    <div className="text-center">
+                    <div className="text-center bg-[var(--werent-green-1)]">
                         <h3 className="text-lg font-semibold mb-4">Payment Methods</h3>
                         <div className="flex justify-center space-x-3">
                             <img
@@ -68,12 +68,12 @@ export default function Footer() {
                                 className="w-8 h-8 shadow-md md:w-10 md:h-10 object-contain hover:scale-110 transition-transform duration-200 cursor-pointer"
                             />
                             <img
-                                src="/visa.png"
+                                src="/visawhite.png"
                                 alt="Visa"
                                 className="w-8 h-8 shadow-md md:w-10 md:h-10 object-contain hover:scale-110 transition-transform duration-200 cursor-pointer"
                             />
                             <img
-                                src="/mastercard.png"
+                                src="/mastercardwhite.png"
                                 alt="Mastercard"
                                 className="w-8 h-8 shadow-md md:w-10 md:h-10 object-contain hover:scale-110 transition-transform duration-200 cursor-pointer"
                             />
@@ -81,28 +81,28 @@ export default function Footer() {
                     </div>
 
                     {/* Connect With Us */}
-                    <div className="text-center">
+                    <div className="text-center bg-[var(--werent-green-1)]">
                         <h3 className="text-lg font-semibold mb-4">Connect With Us</h3>
                         <div className="flex justify-center space-x-3">
                             <img
-                                src="/facebook.png"
+                                src="/facebookwhite.png"
                                 alt="Facebook"
-                                className="w-8 h-8 shadow-md md:w-10 md:h-10 object-contain hover:scale-110 transition-transform duration-200 cursor-pointer"
+                                className="w-8 h-8 shadow-md md:w-8 md:h-8 object-contain hover:scale-110 transition-transform duration-200 cursor-pointer"
                             />
                             <img
-                                src="/instagram.png"
+                                src="/instagramwhite.png"
                                 alt="Instagram"
                                 className="w-8 h-8 shadow-md md:w-10 md:h-10 object-contain hover:scale-110 transition-transform duration-200 cursor-pointer"
                             />
                             <img
-                                src="/tiktok.png"
+                                src="/tiktokwhite.png"
                                 alt="TikTok"
                                 className="w-8 h-8 shadow-md md:w-10 md:h-10 object-contain hover:scale-110 transition-transform duration-200 cursor-pointer"
                             />
                             <img
-                                src="/x.png"
+                                src="/xwhite.png"
                                 alt="X (Twitter)"
-                                className="w-8 h-8 shadow-md md:w-10 md:h-10 object-contain hover:scale-110 transition-transform duration-200 cursor-pointer"
+                                className="w-8 h-8 shadow-md md:w-8 md:h-8 object-contain hover:scale-110 transition-transform duration-200 cursor-pointer"
                             />
                         </div>
                     </div>
@@ -110,7 +110,7 @@ export default function Footer() {
             </div>
 
             {/* Bottom Bar */}
-            <div className="border-t border-white/20 py-4">
+            <div className="bg-[var(--werent-green-1)] py-4">
                 <div className="container mx-auto px-6">
                     <div className="flex flex-col md:flex-row justify-between items-center space-y-2 md:space-y-0 text-xs text-[var(--werent-figma-surface)]">
                         <span>© {year} WeRent. All rights reserved.</span>

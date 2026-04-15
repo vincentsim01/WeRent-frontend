@@ -12,11 +12,10 @@ import { Cormorant } from "next/font/google";
 //   variable: "--font-cormorant",
 // });
 
-const raleway = Raleway({
-  subsets: ['latin'],
-  weight: ['400', '500', '700'], 
-  variable: "--font-raleway", 
-})
+const RalewaySans = Raleway({
+variable: "--font-Raleway-sans",
+subsets: ["latin"],
+});
 
 
 export const metadata: Metadata = {
@@ -33,7 +32,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={raleway.variable}>
+    <html lang="en" className={RalewaySans.variable}>
       <body>
         <Header />
         {children}
